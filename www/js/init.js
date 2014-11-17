@@ -1,5 +1,17 @@
+var IsLoaded=false;
+
 window.addEventListener('load', function () {
-
-
-	render();
+    if(!IsLoaded){
+        IsLoaded=true;
+        render(); 
+    }
 });
+
+/* Intel native bridge is available */
+document.addEventListener("intel.xdk.device.ready",function(){
+    intel.xdk.device.hideSplashScreen();
+    if(!IsLoaded){
+        IsLoaded=true;
+        render(); 
+    }    
+},false);

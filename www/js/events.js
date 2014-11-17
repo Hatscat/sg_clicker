@@ -7,9 +7,11 @@ onmousedown = function () {
 }
 onmouseup = function () {
 	mouse.isDown = false;
-	// TODO : add button events (instructions) here
+	if(isMouseHover(COIN_BOX))
 }
 
-function isMouseHover (box) { // [x, y, w, h]
+// params : [x, y, w, h]
+// return true is mouse is on the box
+function isMouseHover (box) { 
 	return mouse.x >= box[0] && mouse.x <= box[0] + box[2] && mouse.y >= box[1] && mouse.y <= box[1] + box[3];
 }
