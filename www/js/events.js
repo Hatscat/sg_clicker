@@ -11,7 +11,7 @@ function init_events(){
     onmouseup = function () {
         mouse.isDown = false;
         if(current_scene === SC_GAME){
-            if(isMouseHover(COIN_BOX)){
+            if(isMouseHover_circle(coin_circle)){
                 fric += fric_per_click*CLICK_COMBO_LEVEL[click_multiplier].multiplier;
                 click_serie++;
                 last_time_clicked = time;
