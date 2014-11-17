@@ -18,22 +18,25 @@ function init_config () {
         {clicks:140,multiplier:6},
         {clicks:200,multiplier:10}
     ];
-    SAVINGS = {
-        LDD: {
+    SAVINGS = [
+        {
+            name:'LDD',
             cost:100,
             fric_per_second:10,            
             nb_total:0,
             description:"Une épargne ou on vit dans les arbres et on est copain avec les oiseaux",
             link:"https://particuliers.societegenerale.fr/epargner/par_type_de_placements/livrets_epargne/livret_developpement_durable.html"
         },
-        Livret_A: {
+        {
+            name:'Livret A',
             cost:150,
             fric_per_second:15,            
             total_fric_per_second:0,
             description:"le A c'est le B.A.-BA",
             link:"https://particuliers.societegenerale.fr/epargner/par_type_de_placements/livrets_epargne/livret_a.html"
         },
-        LEP: {
+        {
+            name:'LEP',
             cost:300,
             fric_per_second:30,            
             nb_total:0,
@@ -41,50 +44,110 @@ function init_config () {
             link:"https://particuliers.societegenerale.fr/epargner/par_type_de_placements/livrets_epargne/livret_epargne_populaire.html"
             
         },
-        Livret_Jeune: {
+        {
+            name:'Livret Jeune',
             cost:1000,
             fric_per_second:30,            
             nb_total:0,
             description:"Parcequ'un MacDo ça se prépare",
             link:"https://particuliers.societegenerale.fr/epargner/par_type_de_placements/livrets_epargne/livret_jeune.html",
         },
-        PEL: {
+        {
+            name:'PEL',
             cost:10000,
             fric_per_second:500,            
             nb_total:0,
             description:"Parcequ'un chez soi vraiment à soi c'est bien quand même",
             link:"https://particuliers.societegenerale.fr/epargner/par_type_de_placements/epargne_logement/plan_epargne_logement.html"
         },
-        CEL: {
+        {
+            name:'CEL',
             cost:50000,
             fric_per_second:2000,            
             nb_total:0,
             description:"Comme un PEL mais avec un C",
             link:"https://particuliers.societegenerale.fr/epargner/par_type_de_placements/epargne_logement/compte_epargne_logement.html"
+        }
+    ];
+    ACHIEVEMENTS = [
+        {
+            name:'Sou Fétiche',
+            description:"Le premier, le meilleur"
         },
-    }
-    ACHIEVEMENTS = {
-        'Sou Fétiche':{description:"Le premier, le meilleur"},
-        'Wake and Bank':{description:"Aquiert ton première épargne"},    
-        'Clic noob':{description:"Clique 100 fois"},
-        'Big clic':{description:"Clique 1000 fois"},
-        'Clic clic':{description:"Clique 10000 fois"},
-        'Plus de doigt':{description:"Clique 1 000 000 fois"},
-        'Plus de souris':{description:"Clique 1 000 000 000 fois"},
-        'Cheat Clic':{description:"Tu utlise un auto clicker c'est ça ?"},
-        "C'est un début":{description:"Avoir 1000 euros"},
-        "Un bon paquet":{description:"Avoir 10 000 euros"},
-        "Une petite fortune":{description:"Avoir 100 000 euros"},        
-        "Millionaire":{description:"Avoir 1 000 000 euros"},
-        "Milliardaire":{description:"Avoir 1 000 000 000 euros"},
-        "Beacoupdaire":{description:"Avoir 1 000 000 000 000 000 000 euros"},
-        "A demi":{description:"Remplir son Livret A à 50%"},        
-        "Une belle foret":{description:"Remplir son LDD à 50%"},
-        "Gaia te remercie":{description:"Remplir son LDD à 100%"},
-        "Comarade":{description:"Remplir son LEP à 50%"},
-        "Comarade":{description:"Remplir son LEP à 50%"},
+        {
+            name:'Wake and Bank',
+            description:"Aquiert ton première épargne"
+        },    
+        {
+            name:'Clic noob',
+            description:"Clique 100 fois"
+        },
+        {
+            name:'Big clic',
+            description:"Clique 1000 fois"
+        },
+        {
+            name:'Clic clic',
+            description:"Clique 10000 fois"
+        },
+        {
+            name:'Plus de doigt',
+            description:"Clique 1 000 000 fois"
+        },
+        {
+            name:'Plus de souris',
+            description:"Clique 1 000 000 000 fois"
+        },
+        {
+            name:'Cheat Clic',
+            description:"Tu utlise un auto clicker c'est ça ?"
+        },
+        {
+            name:"C'est un début",
+            description:"Avoir 1000 euros"
+        },
+        {
+            name:"Un bon paquet",
+            description:"Avoir 10 000 euros"
+        },
+        {
+            name:"Une petite fortune",
+            description:"Avoir 100 000 euros"
+        },        
+        {
+            name:"Millionaire",
+            description:"Avoir 1 000 000 euros"
+        },
+        {
+            name:"Milliardaire",
+            description:"Avoir 1 000 000 000 euros"
+        },
+        {
+            name:"Beacoupdaire",
+            description:"Avoir 1 000 000 000 000 000 000 euros"
+        },
+        {
+            name:"A demi",
+            description:"Remplir son Livret A à 50%"
+        },        
+        {
+            name:"Une belle foret",
+            description:"Remplir son LDD à 50%"
+        },
+        {
+            name:"Gaia te remercie",
+            description:"Remplir son LDD à 100%"
+        },
+        {
+            name:"Comarade",
+            description:"Remplir son LEP à 50%"
+        },
+        {
+            name:"Comarade",
+            description:"Remplir son LEP à 50%"
+        },
+    ];
 
-    }
 	fric = 0;
 	fric_per_second = 1;
     fric_per_click = 1;
