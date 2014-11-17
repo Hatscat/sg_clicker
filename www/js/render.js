@@ -105,7 +105,7 @@ function draw_savings_sc () {
 		
 		if (h < H && h >= FRIC_FONT_SIZE*2) { // test if on screen
 			buff_ctx.font = (FRIC_FONT_SIZE*.6) + "px impact";
-			buff_ctx.fillText(SAVINGS[i].name, SAVINGS[i].box[2]*.5, h+text_margin_h);
+			buff_ctx.fillText(SAVINGS[i].name + " x" + (SAVINGS[i].nb_total|0), SAVINGS[i].box[2]*.5, h+text_margin_h);
 			buff_ctx.font = "italic " + (FRIC_FONT_SIZE*.5) + "px georgia";
 			buff_ctx.fillText(SAVINGS[i].description, SAVINGS[i].box[2]*.5, h+FRIC_FONT_SIZE*.5+text_margin_h*5);
 			buff_ctx.strokeRect(SAVINGS[i].box[0], h, W, SAVINGS[i].box[3]);
