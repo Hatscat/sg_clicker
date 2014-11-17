@@ -17,6 +17,9 @@ COIN_SIZE = 0.33 * (W < H ?  W : H);
 COIN_BOX = [W*.5-COIN_SIZE*.5, H*.4-COIN_SIZE*.5, COIN_SIZE, COIN_SIZE];
 
 current_scene = SC_GAME;
+time = 0;
+delta_time = 1;
+old_timestamp = 0;
 mouse = {
 	x: 0,
 	y: 0,
