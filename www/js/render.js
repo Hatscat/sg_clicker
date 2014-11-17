@@ -1,8 +1,5 @@
 function render () {
 
-	// buff_ctx.textAlign = 'center';
-	// buff_ctx.textBaseline = 'top';
-
 	switch (current_scene) {
 		case SC_GAME:
 			draw_game_sc();
@@ -27,19 +24,7 @@ function draw_game_sc () {
 	// coin
 	buff_ctx.fillStyle = '#f00';
 	
-	var radius = COIN_RADIUS_M;
-	
-	if (isMouseHover_circle(coin_circle)) {
-
-		if (mouse.isDown) {
-			radius = COIN_RADIUS_S;
-		} else {
-			radius = COIN_RADIUS_M;
-		}
-	} else {
-		radius = COIN_RADIUS_L;
-	}
-
+	var radius = isMouseHover_circle(coin_circle) ? mouse.isDown ? COIN_RADIUS_S : COIN_RADIUS_M : COIN_RADIUS_L;
 	buff_ctx.beginPath();
 	buff_ctx.arc(coin_circle[0], coin_circle[1], radius, 0, 2*Math.PI);
 	buff_ctx.fill();
@@ -57,7 +42,7 @@ function draw_game_sc () {
 
 	// combo bar
 	buff_ctx.fillStyle = '#c00';
-	buff_ctx.fillRect(0, FRIC_FONT_SIZE*2-text_margin_h*5, W, text_margin_h*5);
+	buff_ctx.fillRect(0, FRIC_FONT_SIZE*2-text_margin_h*5, click_multiplier/CLICK_COMBO_LEVEL.length*W, text_margin_h*5);
 }
 
 function draw_achievements_sc () {
@@ -78,6 +63,10 @@ function draw_upgrades_sc () {
 
 function draw_fric () {
 
+	var fric_str = (fric*100|0) / 100;
+
+	//console.log(fric_str);
+
 	buff_ctx.fillStyle = '#ccc';
 	buff_ctx.fillRect(0, 0, W, FRIC_FONT_SIZE*2);
 
@@ -85,8 +74,8 @@ function draw_fric () {
 	buff_ctx.fillStyle = fric_grad;
 	buff_ctx.strokeStyle = '#000';
 
-	buff_ctx.fillText(fric+' €', W*.5, text_margin_h);
-	buff_ctx.strokeText(fric+' €', W*.5, text_margin_h);
+	buff_ctx.fillText(fric_str+' €', W*.5, text_margin_h);
+	buff_ctx.strokeText(fric_str+' €', W*.5, text_margin_h);
 
 	buff_ctx.font = (FRIC_FONT_SIZE*.5) + "px impact";
 	buff_ctx.fillStyle = '#000';
