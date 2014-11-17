@@ -1,33 +1,40 @@
-onresize = set_size;
+function init_events(){
+    onresize = set_size;
 
-onmousemove = function (e) {
-	mouse.x = e.clientX;
-	mouse.y = e.clientY;
-}
-onmousedown = function () {
-	mouse.isDown = true;
-}
-onmouseup = function () {
-	mouse.isDown = false;
-    if(current_scene === SC_GAME){
-        if(isMouseHover(COIN_BOX)){
-            //FRIC+= FRIC PER CLICK * COMBO
+    onmousemove = function (e) {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+    }
+    onmousedown = function () {
+        mouse.isDown = true;
+    }
+    onmouseup = function () {
+        mouse.isDown = false;
+        if(current_scene === SC_GAME){
+            if(isMouseHover(COIN_BOX)){
+                fric += fric_per_click*click_combo_level[click_multiplier].multiplier;
+                click_serie++;
+                last_time_clicked = time;
+                if(click_multiplier != click_combo_level.length-1){
+                    if(click_serie > click_combo_level[click_multiplier+1].clicks)
+                        click_multiplier++;
+                }
+            }
+            else if(isMouseHover(BT_ACHIEVEMENTS)) {
+                current_scene = SC_ACHIEVEMENTS;
+            }
+            else if(isMouseHover(BT_BANK)){
+                current_scene = SC_BANK;
+            }   
         }
-        else if(isMouseHover(BT_ACHIEVEMENTS)) {
-            //LOAD achievment scene
+        else if(current_scene === SC_ACHIEVEMENTS){
+            //ACHIEVEMNT EVENTS
         }
-        else if(isMouseHover(BT_BANK)){
-            //LOAD upgrades scenes
-        }   
-    }
-    else if(current_scene === SC_ACHIEVEMENTS){
-        //ACHIEVEMNT EVENTS
-    }
-    else if(current_scene === SC_BANK){
-        //BANK EVENTS
+        else if(current_scene === SC_BANK){
+            //BANK EVENTS
+        }
     }
 }
-
 // params : [x, y, w, h]
 // return true is mouse is on the box
 function isMouseHover (box) { 

@@ -4,15 +4,26 @@ function init_config () {
 	main_buffer = canvas.cloneNode();
 	real_ctx = canvas.getContext('2d');
 	buff_ctx = main_buffer.getContext('2d');
-
+    
 	SC_GAME = 1;
 	SC_ACHIEVEMENTS = 2;
 	SC_UPGRADES = 3;
-
+    click_combo_level = [
+        {clicks:0,multiplier:1},
+        {clicks:2,multiplier:1.5},
+        {clicks:10,multiplier:2},        
+        {clicks:50,multiplier:4},        
+        {clicks:100,multiplier:6}
+    ];
 	fric = 0;
 	fric_per_second = 0;
+    fric_per_click = 1;
+    click_multiplier = 0;
+    click_serie = 0;
+    last_time_clicked = 0;
+    time_combo = 500;
 	current_scene = SC_GAME;
-	time = 0;
+	time = 0; //in ms
 	delta_time = 1;
 	old_timestamp = 0;
 	mouse = {
