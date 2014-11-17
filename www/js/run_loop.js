@@ -10,7 +10,7 @@ function loop (t) {
     }
     if(time >=last_time_fric_update+fric_refresh_time){
         fric += fric_per_second*(fric_refresh_time/1000);
-        last_time_update = time;
+        last_time_fric_update = time;
     }
     /*if(time >=last_time_achievements_update+achievements_refresh_time){
         
