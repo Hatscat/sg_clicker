@@ -9,7 +9,23 @@ onmousedown = function () {
 }
 onmouseup = function () {
 	mouse.isDown = false;
-	if(isMouseHover(COIN_BOX))
+    if(current_scene === SC_GAME){
+        if(isMouseHover(COIN_BOX)){
+            //FRIC+= FRIC PER CLICK * COMBO
+        }
+        else if(isMouseHover(BT_ACHIEVEMENTS)) {
+            //LOAD achievment scene
+        }
+        else if(isMouseHover(BT_BANK)){
+            //LOAD upgrades scenes
+        }   
+    }
+    else if(current_scene === SC_ACHIEVEMENTS){
+        //ACHIEVEMNT EVENTS
+    }
+    else if(current_scene === SC_BANK){
+        //BANK EVENTS
+    }
 }
 
 // params : [x, y, w, h]
