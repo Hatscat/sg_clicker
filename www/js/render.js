@@ -8,7 +8,7 @@ function render () {
 			draw_achievements_sc();
 		break;
 		case SC_BANK:
-			draw_upgrades_sc();
+			draw_savings_sc();
 		break;
 	}
 
@@ -50,6 +50,35 @@ function draw_achievements_sc () {
 	buff_ctx.fillStyle = '#eee';
 	buff_ctx.fillRect(0, 0, W, H);
 
+	// achievements
+	buff_ctx.fillStyle = buff_ctx.strokeStyle = '#000';
+	buff_ctx.lineWidth = FRIC_FONT_SIZE * .1;
+
+	for (var i = ACHIEVEMENTS.length; i--;) {
+		
+		vertical_scroll = vertical_scroll<0 ? vertical_scroll>1-ACHIEVEMENTS.length ? vertical_scroll : 1-ACHIEVEMENTS.length : 0;
+
+		var h = ACHIEVEMENTS[i].box[1] + vertical_scroll*ACHIEVEMENTS[i].box[3] + FRIC_FONT_SIZE*2;
+		
+		if (h < H && h >= FRIC_FONT_SIZE*2) { // test if on screen
+			// stars
+			if (ACHIEVEMENTS[i].gotIt) {
+				buff_ctx.fillStyle = '#ffc';
+				buff_ctx.fillRect(ACHIEVEMENTS[i].box[0], h, W, ACHIEVEMENTS[i].box[3]);
+				buff_ctx.drawImage(achievement_star_sprites[1], BT_INFO[0], h);
+				buff_ctx.fillStyle = buff_ctx.strokeStyle;
+			} else {
+				buff_ctx.drawImage(achievement_star_sprites[0], BT_INFO[0], h);
+			}
+			// text
+			buff_ctx.font = (FRIC_FONT_SIZE*.6) + "px impact";
+			buff_ctx.fillText(ACHIEVEMENTS[i].name, ACHIEVEMENTS[i].box[2]*.5, h+text_margin_h);
+			buff_ctx.font = "italic " + (FRIC_FONT_SIZE*.5) + "px georgia";
+			buff_ctx.fillText(ACHIEVEMENTS[i].description, ACHIEVEMENTS[i].box[2]*.5, h+FRIC_FONT_SIZE*.5+text_margin_h*5);
+			buff_ctx.strokeRect(ACHIEVEMENTS[i].box[0], h, W, ACHIEVEMENTS[i].box[3]);
+		}
+	}
+
 	// fric
 	draw_fric();
 	// sprite partage
@@ -58,20 +87,20 @@ function draw_achievements_sc () {
 	buff_ctx.drawImage(back_bt_sprite, 0, 0);
 }
 
-function draw_upgrades_sc () {
+function draw_savings_sc () {
 
 	// BG
 	buff_ctx.fillStyle = '#eee';
 	buff_ctx.fillRect(0, 0, W, H);
 
-	// savings bts
+	// savings + info bts
 	buff_ctx.fillStyle = buff_ctx.strokeStyle = '#000';
 	buff_ctx.lineWidth = FRIC_FONT_SIZE * .1;
 
-	//buff_ctx.font = c.width + "px georgia";
-
 	for (var i = SAVINGS.length; i--;) {
 		
+		vertical_scroll = vertical_scroll<0 ? vertical_scroll>1-SAVINGS.length ? vertical_scroll : 1-SAVINGS.length : 0;
+
 		var h = SAVINGS[i].box[1] + vertical_scroll*SAVINGS[i].box[3] + FRIC_FONT_SIZE*2;
 		
 		if (h < H && h >= FRIC_FONT_SIZE*2) { // test if on screen
@@ -84,11 +113,6 @@ function draw_upgrades_sc () {
 			buff_ctx.drawImage(info_bt_sprite, BT_INFO[0], h);
 		}
 	}
-
-	// info bts
-	//for (var i = H/BT_INFO[3]|0; i--;) {
-	//	buff_ctx.drawImage(info_bt_sprite, BT_INFO[0], FRIC_FONT_SIZE*2+BT_INFO[3]*i|0);
-	//}
 
 	// fric
 	draw_fric();

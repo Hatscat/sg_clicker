@@ -80,7 +80,7 @@ function init_config () {
         },
         {
             name:'Wake and Bank',
-            description:"Aquiert ton première épargne",
+            description:"Aquiert ta première épargne",
             gotIt:false,
             varUsed: "SAVINGS[0].nb_total",
             valueToPass:1,
@@ -347,7 +347,8 @@ function set_render_settings () {
 	coin_sprites = create_coin_sprites();
 	particle_sprite = create_coin_particle();
 	back_bt_sprite = create_back_bt();
-	info_bt_sprite = create_info_bt();
+    info_bt_sprite = create_info_bt();
+    achievement_star_sprites = create_achievements();
 }
 
 function create_coin_sprites () {
@@ -464,3 +465,39 @@ function create_info_bt () {
 
 	return c;
 }
+
+function create_achievements () {
+
+    var c1 = document.createElement('canvas');
+    var c2 = document.createElement('canvas');
+    var ctx1 = c1.getContext('2d');
+    var ctx2 = c2.getContext('2d');
+    c1.width = c2.width = BT_INFO[2];
+    c1.height = c2.height = BT_INFO[2];
+    var size = BT_INFO[2] * .5;
+
+    draw_star(ctx1, '#666');
+    draw_star(ctx2, '#cb0');
+
+    function draw_star (ctx, color) {
+
+        var d = 0; // Math.PI*.2;
+        var x = size * 1.5;
+        var y = size * 1.25;
+
+        ctx.strokeStyle = color;
+        ctx.lineWidth = BT_INFO[2] * .1;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+
+        for (var i = 4; i--;) {
+            ctx.lineTo(x+=Math.cos(d+=Math.PI*.8)*size, y-=Math.sin(d)*size);
+        }
+        
+        ctx.closePath();
+        ctx.stroke();
+    }
+
+    return [c1, c2];
+}
+
