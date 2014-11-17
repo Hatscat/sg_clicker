@@ -24,7 +24,7 @@ function init_config () {
             cost:100,
             fric_per_second:10,            
             nb_total:0,
-            description:"Une épargne ou on vit dans les arbres et on est copain avec les oiseaux",
+            description:"Une épargne de hippie",
             link:"https://particuliers.societegenerale.fr/epargner/par_type_de_placements/livrets_epargne/livret_developpement_durable.html"
         },
         {
@@ -42,7 +42,7 @@ function init_config () {
             nb_total:0,
             description:"L'épargne pro prolétaire",
             link:"https://particuliers.societegenerale.fr/epargner/par_type_de_placements/livrets_epargne/livret_epargne_populaire.html"
-            
+
         },
         {
             name:'Livret Jeune',
@@ -57,7 +57,7 @@ function init_config () {
             cost:10000,
             fric_per_second:500,            
             nb_total:0,
-            description:"Parcequ'un chez soi vraiment à soi c'est bien quand même",
+            description:"Le logement c'est important",
             link:"https://particuliers.societegenerale.fr/epargner/par_type_de_placements/epargne_logement/plan_epargne_logement.html"
         },
         {
@@ -72,79 +72,210 @@ function init_config () {
     ACHIEVEMENTS = [
         {
             name:'Sou Fétiche',
-            description:"Le premier, le meilleur"
+            description:"Le premier, le meilleur",
+            gotIt:false,
+            varUsed: "fric",
+            valueToPass: 1,
+            reward: 1 //in percent of fric per second
         },
         {
             name:'Wake and Bank',
-            description:"Aquiert ton première épargne"
+            description:"Aquiert ton première épargne",
+            gotIt:false,
+            varUsed: "SAVINGS[0].nb_total",
+            valueToPass:1,
+            reward: 1
         },    
         {
             name:'Clic noob',
-            description:"Clique 100 fois"
+            description:"Clique 100 fois",
+            gotIt:false,
+            varUsed: "total_click",
+            valueToPass:100,
+            reward: 1
         },
         {
             name:'Big clic',
-            description:"Clique 1000 fois"
+            description:"Clique 1000 fois",
+            gotIt:false,
+            varUsed: "total_click",
+            valueToPass:1000,
+            reward: 3
         },
         {
             name:'Clic clic',
-            description:"Clique 10000 fois"
+            description:"Clique 10000 fois",
+            gotIt:false,
+            varUsed: "total_click",
+            valueToPass:10000,
+            reward: 5
         },
         {
             name:'Plus de doigt',
-            description:"Clique 1 000 000 fois"
+            description:"Clique 1 000 000 fois",
+            gotIt:false,
+            varUsed: "total_click",
+            valueToPass:1000000,
+            reward: 10,
         },
         {
             name:'Plus de souris',
-            description:"Clique 1 000 000 000 fois"
+            description:"Clique 1 000 000 000 fois",
+            gotIt:false,
+            varUsed: "total_click",
+            valueToPass:1000000000,
+            reward: 15
         },
         {
             name:'Cheat Clic',
-            description:"Tu utlise un auto clicker c'est ça ?"
+            description:"Tu utlise un auto clicker c'est ça ?",
+            gotIt:false,
+            varUsed: "total_click",
+            valueToPass:1000000000000,
+            reward: 20
         },
         {
             name:"C'est un début",
-            description:"Avoir 1000 euros"
+            description:"Avoir 1000 euros",
+            gotIt:false,
+            varUsed: "fric",
+            valueToPass:1000,
+            reward: 1
         },
         {
             name:"Un bon paquet",
-            description:"Avoir 10 000 euros"
+            description:"Avoir 10 000 euros",
+            gotIt:false,
+            varUsed: "fric",
+            valueToPass:10000,
+            reward: 3
         },
         {
             name:"Une petite fortune",
-            description:"Avoir 100 000 euros"
+            description:"Avoir 100 000 euros",
+            gotIt:false,
+            varUsed: "fric",
+            valueToPass:100000,
+            reward: 5
         },        
         {
             name:"Millionaire",
-            description:"Avoir 1 000 000 euros"
+            description:"Avoir 1 000 000 euros",
+            gotIt:false,
+            varUsed: "fric",
+            valueToPass:1000000,
+            reward: 15,
         },
         {
             name:"Milliardaire",
-            description:"Avoir 1 000 000 000 euros"
+            description:"Avoir 1 000 000 000 euros",
+            gotIt:false,
+            varUsed: "fric",
+            valueToPass:1000000000,
+            reward: 25,
         },
         {
-            name:"Beacoupdaire",
-            description:"Avoir 1 000 000 000 000 000 000 euros"
+            name:"Trilionaire",
+            description:"Avoir 1 000 000 000 000 000 000 euros",
+            gotIt:false,
+            varUsed: "fric",
+            valueToPass:10000000000000000000,
+            reward: 50
         },
         {
             name:"A demi",
-            description:"Remplir son Livret A à 50%"
-        },        
+            description:"Remplir son Livret A à 50%",
+            gotIt:false,
+            varUsed: "SAVINGS[1].nb_total",
+            valueToPass:50,
+            reward: 5,
+        },  
+        {
+            name:"A plein temps",
+            description:"Remplir son Livret A à 100%",
+            gotIt:false,
+            varUsed: "SAVINGS[1].nb_total",
+            valueToPass:100,
+            reward: 10,
+        },   
         {
             name:"Une belle foret",
-            description:"Remplir son LDD à 50%"
+            description:"Remplir son LDD à 50%",
+            gotIt:false,
+            varUsed: "SAVINGS[0].nb_total",
+            valueToPass:50,
+            reward: 5,
         },
         {
-            name:"Gaia te remercie",
-            description:"Remplir son LDD à 100%"
+            name:"Gaia power",
+            description:"Remplir son LDD à 100%",
+            gotIt:false,
+            varUsed: "SAVINGS[0].nb_total",
+            valueToPass:100,
+            reward: 10,
         },
         {
-            name:"Comarade",
-            description:"Remplir son LEP à 50%"
+            name:"LEP-reuve epargne",
+            description:"Remplir son LEP à 50%",
+            gotIt:false,
+            varUsed: "SAVINGS[2].nb_total",
+            valueToPass:50,
+            reward: 5
         },
         {
-            name:"Comarade",
-            description:"Remplir son LEP à 50%"
+            name:"Full LEP",
+            description:"Remplir son LEP à 100%",
+            gotIt:false,
+            varUsed: "SAVINGS[2].nb_total",
+            valueToPass:100,
+            reward: 10
+        },
+        {
+            name:"Jeune et prudent",
+            description:"Remplir son Livret Jeune à 50%",
+            gotIt:false,
+            varUsed: "SAVINGS[3].nb_total",
+            valueToPass:50,
+            reward: 5
+        },
+        {
+            name:"Jeune et malin",
+            description:"Remplir son Livret Jeune à 100%",
+            varUsed: "SAVINGS[3].nb_total",
+            valueToPass:100,
+            reward: 10
+        },
+        {
+            name:"Epargne à la PEL",
+            description:"Remplir son PEL à 50%",
+            gotIt:false,
+            varUsed: "SAVINGS[4].nb_total",
+            valueToPass:50,
+            reward: 5
+        },
+        {
+            name:"PEL de chantier",
+            description:"Remplir son PEL à 100%",
+            gotIt:false,
+            varUsed: "SAVINGS[4].nb_total",
+            valueToPass:100,
+            reward: 10
+        },
+        {
+            name:"CEL et poivre",
+            description:"Remplir son Livret Jeune à 50%",
+            gotIt:false,
+            varUsed: "SAVINGS[5].nb_total",
+            valueToPass:50,
+            reward: 5
+        },
+        {
+            name:"Passe moi le CEL",
+            description:"Remplir son Livret Jeune à 100%",
+            gotIt:false,
+            varUsed: "SAVINGS[5].nb_total",
+            valueToPass:100,
+            reward: 10
         },
     ];
 
@@ -152,10 +283,12 @@ function init_config () {
 	fric_per_second = 1;
     fric_per_click = 1;
     fric_refresh_time = 100;
+    achievements_refresh_time = 1000;
     click_multiplier = 0;
     click_serie = 0;
     last_time_clicked = 0;
-    last_time_update = 0;
+    last_time_fric_update = 0;
+    last_time_achievemnts_update = 0;
     time_combo = 500;
 	current_scene = SC_GAME;
 	time = 0; //in ms
@@ -167,7 +300,6 @@ function init_config () {
 		y: 0,
 		isDown: false
 	};
-
 	set_size();
 }
 
