@@ -46,8 +46,11 @@ function set_size () {
 	BT_ACHIEVEMENTS = [0, H-BT_SIZE, BT_SIZE, BT_SIZE];
 	BT_BANK = [W-BT_SIZE, H-BT_SIZE, BT_SIZE, BT_SIZE];
 
-	COIN_SIZE = 0.33 * (W < H ?  W : H);
-	COIN_BOX = [W*.5-COIN_SIZE*.5, H*.5-COIN_SIZE*.5, COIN_SIZE, COIN_SIZE];
+	COIN_RADIUS_S = 0.1 * min_length;
+	COIN_RADIUS_M = 0.15 * min_length;
+	COIN_RADIUS_L = 0.2 * min_length;
+
+	coin_circle = [W*.5, H*.5, COIN_RADIUS_L];
 
 	set_render_settings();
 };
@@ -64,4 +67,16 @@ function set_render_settings () {
 	fric_grad.addColorStop(1, '#333');
 
 	text_margin_h = FRIC_FONT_SIZE * .05;
+
+	coin_sprite = create_coin_sprite();
+}
+
+function create_coin_sprite () {
+	
+	var c = canvas.cloneNode();
+	var ctx = c.getContext('2d');
+
+
+
+	return c;
 }

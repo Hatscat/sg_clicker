@@ -20,19 +20,44 @@ function render () {
 
 function draw_game_sc () {
 
+	// BG
 	buff_ctx.fillStyle = '#eee';
 	buff_ctx.fillRect(0, 0, W, H);
 
+	// coin
 	buff_ctx.fillStyle = '#f00';
-	buff_ctx.fillRect(COIN_BOX[0], COIN_BOX[1], COIN_BOX[2], COIN_BOX[3]);
+	
+	var radius = COIN_RADIUS_M;
+	
+	if (isMouseHover_circle(coin_circle)) {
+
+		if (mouse.isDown) {
+			radius = COIN_RADIUS_S;
+		} else {
+			radius = COIN_RADIUS_M;
+		}
+	} else {
+		radius = COIN_RADIUS_L;
+	}
+
+	buff_ctx.beginPath();
+	buff_ctx.arc(coin_circle[0], coin_circle[1], radius, 0, 2*Math.PI);
+	buff_ctx.fill();
+	
+	// bt achievement
 	buff_ctx.fillStyle = '#0f0';
 	buff_ctx.fillRect(BT_ACHIEVEMENTS[0], BT_ACHIEVEMENTS[1], BT_ACHIEVEMENTS[2], BT_ACHIEVEMENTS[3]);
+
+	// bt bank
 	buff_ctx.fillStyle = '#00f';
 	buff_ctx.fillRect(BT_BANK[0], BT_BANK[1], BT_BANK[2], BT_BANK[3]);
 
+	// fric
 	draw_fric();
 
 	// combo bar
+	buff_ctx.fillStyle = '#c00';
+	buff_ctx.fillRect(0, FRIC_FONT_SIZE*2-text_margin_h*5, W, text_margin_h*5);
 }
 
 function draw_achievements_sc () {

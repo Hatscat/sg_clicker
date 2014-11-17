@@ -38,5 +38,11 @@ function init_events(){
 // params : [x, y, w, h]
 // return true is mouse is on the box
 function isMouseHover (box) { 
-	return mouse.x >= box[0] && mouse.x <= box[0] + box[2] && mouse.y >= box[1] && mouse.y <= box[1] + box[3];
+	return mouse.x >= box[0] && mouse.x <= box[0]+box[2] && mouse.y >= box[1] && mouse.y <= box[1]+box[3];
+}
+
+// params : [x, y, radius]
+// return true is mouse is on the circle
+function isMouseHover_circle (circle) {
+   return (mouse.x-circle[0])*(mouse.x-circle[0])+(mouse.y-circle[1])*(mouse.y-circle[1]) < circle[2]*circle[2];
 }
