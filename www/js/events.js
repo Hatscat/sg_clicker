@@ -24,6 +24,7 @@ function init_events(){
                 current_scene = SC_ACHIEVEMENTS;
             }
             else if(isMouseHover(BT_BANK)){
+            	vertical_scroll = 0;
                 current_scene = SC_BANK;
             }   
         }
@@ -33,6 +34,13 @@ function init_events(){
         else if(current_scene === SC_BANK){
             //BANK EVENTS
         }
+    }
+    onmousewheel = DOMMouseScroll = function (e) {
+
+    	vertical_scroll += Math.abs(e.wheelDeltaY)/e.wheelDeltaY;
+    	//console.log(e);
+    	console.log(vertical_scroll);
+    	// TODO : // isMouseHover([box[0], box[1]-vertical_scroll*box[3], box[2], box[3]])
     }
 }
 // params : [x, y, w, h]

@@ -32,6 +32,7 @@ function init_config () {
 	time = 0; //in ms
 	delta_time = 1;
 	old_timestamp = 0;
+	vertical_scroll = 0;
 	mouse = {
 		x: 0,
 		y: 0,
