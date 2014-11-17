@@ -7,7 +7,7 @@ function init_config () {
 
 	SC_GAME = 1;
 	SC_ACHIEVEMENTS = 2;
-	SC_UPGRADES = 3;
+	SC_BANK = 3;
 
 	fric = 0;
 	fric_per_second = 0;
@@ -28,7 +28,7 @@ function set_size () {
 
 	canvas.width = main_buffer.width = W = window.innerWidth;
 	canvas.height = main_buffer.height = H = window.innerHeight;
-	
+
 	min_length = W < H ?  W : H;
 	BT_SIZE = .2 * min_length;
 	BT_ACHIEVEMENTS = [0, H-BT_SIZE, BT_SIZE, BT_SIZE];
@@ -36,4 +36,20 @@ function set_size () {
 
 	COIN_SIZE = 0.33 * (W < H ?  W : H);
 	COIN_BOX = [W*.5-COIN_SIZE*.5, H*.5-COIN_SIZE*.5, COIN_SIZE, COIN_SIZE];
+
+	set_render_settings();
 };
+
+function set_render_settings () {
+
+	FRIC_FONT_SIZE = min_length * .1;
+	buff_ctx.textAlign = 'center';
+	buff_ctx.textBaseline = 'top';
+	fric_font = FRIC_FONT_SIZE + "px impact";
+	fric_grad = buff_ctx.createLinearGradient(0, 0, 0, FRIC_FONT_SIZE);
+	fric_grad.addColorStop(0, '#333');
+	fric_grad.addColorStop(.5, '#fff');
+	fric_grad.addColorStop(1, '#333');
+
+	text_margin_h = FRIC_FONT_SIZE * .1;
+}

@@ -13,7 +13,7 @@ document.addEventListener("intel.xdk.device.ready",function(){
     intel.xdk.device.hideSplashScreen();
     if(!IsLoaded){
         IsLoaded=true;
-        init_config;
+        init_config();
         loop();
     }    
 },false);
