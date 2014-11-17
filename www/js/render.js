@@ -18,20 +18,20 @@ function render () {
 function draw_game_sc () {
 
 	// BG
-	buff_ctx.fillStyle = '#eee';
+	buff_ctx.fillStyle = '#000';
 	buff_ctx.fillRect(0, 0, W, H);
 
 	// coin
-	buff_ctx.fillStyle = '#f00';
-	
-	var radius = isMouseHover_circle(coin_circle) ? mouse.isDown ? COIN_RADIUS_S : COIN_RADIUS_M : COIN_RADIUS_L;
-	buff_ctx.beginPath();
-	buff_ctx.arc(coin_circle[0], coin_circle[1], radius, 0, 2*Math.PI);
-	buff_ctx.fill();
+	var radius = isMouseHover_circle(coin_circle) && mouse.isDown ? 1 : 0;
+	buff_ctx.drawImage(coin_sprites[radius], 0, 0);
 	
 	// bt achievement
 	buff_ctx.fillStyle = '#0f0';
 	buff_ctx.fillRect(BT_ACHIEVEMENTS[0], BT_ACHIEVEMENTS[1], BT_ACHIEVEMENTS[2], BT_ACHIEVEMENTS[3]);
+
+	// bt info
+	buff_ctx.fillStyle = '#fc0';
+	buff_ctx.fillRect(BT_INFO[0], BT_INFO[1], BT_INFO[2], BT_INFO[3]);
 
 	// bt bank
 	buff_ctx.fillStyle = '#00f';
@@ -41,8 +41,8 @@ function draw_game_sc () {
 	draw_fric();
 
 	// combo bar
-	buff_ctx.fillStyle = '#c00';
-	buff_ctx.fillRect(0, FRIC_FONT_SIZE*2-text_margin_h*5, click_multiplier/CLICK_COMBO_LEVEL.length*W, text_margin_h*5);
+	buff_ctx.fillStyle = '#fff';
+	buff_ctx.fillRect(0, FRIC_FONT_SIZE*2-text_margin_h*5, click_multiplier/(CLICK_COMBO_LEVEL.length-1)*W|0, text_margin_h*5);
 }
 
 function draw_achievements_sc () {
@@ -65,20 +65,19 @@ function draw_fric () {
 
 	var fric_str = (fric*100|0) / 100;
 
-	//console.log(fric_str);
-
-	buff_ctx.fillStyle = '#ccc';
+	buff_ctx.fillStyle = '#e82d24';
 	buff_ctx.fillRect(0, 0, W, FRIC_FONT_SIZE*2);
 
 	buff_ctx.font = fric_font;
 	buff_ctx.fillStyle = fric_grad;
 	buff_ctx.strokeStyle = '#000';
+	buff_ctx.lineWidth = FRIC_FONT_SIZE * .01;
 
 	buff_ctx.fillText(fric_str+' €', W*.5, text_margin_h);
 	buff_ctx.strokeText(fric_str+' €', W*.5, text_margin_h);
 
 	buff_ctx.font = (FRIC_FONT_SIZE*.5) + "px impact";
-	buff_ctx.fillStyle = '#000';
+	buff_ctx.fillStyle = '#eee';
 	buff_ctx.fillText(fric_per_second+' € / second', W*.5, FRIC_FONT_SIZE+text_margin_h*2);
 }
 
