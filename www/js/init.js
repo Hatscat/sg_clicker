@@ -3,7 +3,7 @@ var IsLoaded=false;
 window.addEventListener('load', function () {
     if(!IsLoaded){
         IsLoaded=true;
-        render(); 
+        loop(); 
     }
 });
 
@@ -12,6 +12,6 @@ document.addEventListener("intel.xdk.device.ready",function(){
     intel.xdk.device.hideSplashScreen();
     if(!IsLoaded){
         IsLoaded=true;
-        render(); 
+        loop(); 
     }    
 },false);
