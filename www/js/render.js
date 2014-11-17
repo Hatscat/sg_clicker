@@ -17,7 +17,7 @@ function render () {
 
 function draw_game_sc () {
 
-	buff_ctx.fillStyle = '#ccc';
+	buff_ctx.fillStyle = '#eee';
 	buff_ctx.fillRect(0, 0, W, H);
 
 	buff_ctx.fillStyle = '#f00';
@@ -25,7 +25,7 @@ function draw_game_sc () {
 	buff_ctx.fillStyle = '#0f0';
 	buff_ctx.fillRect(BT_ACHIEVEMENTS[0], BT_ACHIEVEMENTS[1], BT_ACHIEVEMENTS[2], BT_ACHIEVEMENTS[3]);
 	buff_ctx.fillStyle = '#00f';
-	buff_ctx.fillRect(BT_UPGRADES[0], BT_UPGRADES[1], BT_UPGRADES[2], BT_UPGRADES[3]);
+	buff_ctx.fillRect(BT_BANK[0], BT_BANK[1], BT_BANK[2], BT_BANK[3]);
 }
 
 function draw_achievements_sc () {

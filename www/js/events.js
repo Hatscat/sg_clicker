@@ -1,3 +1,5 @@
+onresize = set_size;
+
 onmousemove = function (e) {
 	mouse.x = e.clientX;
 	mouse.y = e.clientY;
