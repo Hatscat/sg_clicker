@@ -32,7 +32,14 @@ function init_events(){
             //ACHIEVEMNT EVENTS
         }
         else if(current_scene === SC_BANK){
-            //BANK EVENTS
+            for(var i in SAVINGS){
+                if(isMouseHover(SAVINGS[i].box) && fric >= SAVINGS[i].cost){
+                    fric -= SAVINGS[i].cost;
+                    fric_per_second += SAVINGS[i].fric_per_second;
+                    SAVINGS[i].nb_total++;
+                    SAVINGS[i].cost += SAVINGS[i].cost*10/100;
+                }
+            }
         }
     }
     onmousewheel = DOMMouseScroll = function (e) {
