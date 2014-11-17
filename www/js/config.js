@@ -8,7 +8,7 @@ function init_config () {
 	SC_GAME = 1;
 	SC_ACHIEVEMENTS = 2;
 	SC_BANK = 3;
-    click_combo_level = [
+    CLICK_COMBO_LEVEL = [
         {clicks:0,multiplier:1},
         {clicks:2,multiplier:1.5},
         {clicks:10,multiplier:2},        
@@ -17,7 +17,7 @@ function init_config () {
     ];
     
 	fric = 0;
-	fric_per_second = 0;
+	fric_per_second = 1;
     fric_per_click = 1;
     click_multiplier = 0;
     click_serie = 0;

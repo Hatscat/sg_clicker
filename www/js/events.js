@@ -12,11 +12,11 @@ function init_events(){
         mouse.isDown = false;
         if(current_scene === SC_GAME){
             if(isMouseHover(COIN_BOX)){
-                fric += fric_per_click*click_combo_level[click_multiplier].multiplier;
+                fric += fric_per_click*CLICK_COMBO_LEVEL[click_multiplier].multiplier;
                 click_serie++;
                 last_time_clicked = time;
-                if(click_multiplier != click_combo_level.length-1){
-                    if(click_serie > click_combo_level[click_multiplier+1].clicks)
+                if(click_multiplier != CLICK_COMBO_LEVEL.length-1){
+                    if(click_serie > CLICK_COMBO_LEVEL[click_multiplier+1].clicks)
                         click_multiplier++;
                 }
             }
