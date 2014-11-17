@@ -315,13 +315,14 @@ function set_size () {
 
 	BT_BACK_CIRCLE = [W-BT_SIZE*.5, BT_SIZE*.5, BT_SIZE*.3];
 	BT_INFO = [W-BT_SIZE, 0, BT_SIZE, BT_SIZE];
+
 	for (var i = SAVINGS.length; i--;) {
 		SAVINGS[i].box = [0, i*BT_SIZE, W-BT_SIZE, BT_SIZE];
 	}
+
 	for (var i = ACHIEVEMENTS.length; i--;) {
 		ACHIEVEMENTS[i].box = [0, i*BT_SIZE, W-BT_SIZE, BT_SIZE];
 	}
-
 
 	COIN_RADIUS_S = 0.18 * min_length;
 	COIN_RADIUS_L = 0.2 * min_length;
@@ -341,11 +342,12 @@ function set_render_settings () {
 	fric_grad.addColorStop(.5, '#fff');
 	fric_grad.addColorStop(1, '#333');
 
-	text_margin_h = FRIC_FONT_SIZE * .05;
+	text_margin_h = FRIC_FONT_SIZE * .1;
 
 	coin_sprites = create_coin_sprites();
 	particle_sprite = create_coin_particle();
 	back_bt_sprite = create_back_bt();
+	info_bt_sprite = create_info_bt();
 }
 
 function create_coin_sprites () {
@@ -438,6 +440,27 @@ function create_back_bt () {
 	ctx.textAlign = 'center';
 	ctx.textBaseline = 'middle';
 	ctx.fillText('X', BT_BACK_CIRCLE[0], BT_BACK_CIRCLE[1]);
+
+	return c;
+}
+
+function create_info_bt () {
+
+	var c = document.createElement('canvas');
+	var ctx = c.getContext('2d');
+	c.width = BT_INFO[2];
+	c.height = BT_INFO[3];
+
+	ctx.fillStyle = '#24d';
+	ctx.fillRect(0, 0, BT_INFO[2], BT_INFO[3]);
+	ctx.strokeStyle = '#000';
+	ctx.lineWidth = BT_INFO[2] * .1;
+	ctx.strokeRect(0, 0, BT_INFO[2], BT_INFO[3]);
+	ctx.font = (BT_INFO[2]*.5) + "px georgia";
+	ctx.fillStyle = '#fff';
+	ctx.textAlign = 'center';
+	ctx.textBaseline = 'middle';
+	ctx.fillText('i', BT_INFO[2]*.5, BT_INFO[3]*.5);
 
 	return c;
 }

@@ -46,7 +46,7 @@ function init_events(){
 
     	vertical_scroll += Math.abs(e.wheelDeltaY)/e.wheelDeltaY;
     	//console.log(e);
-    	console.log(vertical_scroll);
+    	//console.log(vertical_scroll);
     	// TODO : // isMouseHover([box[0], box[1]-vertical_scroll*box[3], box[2], box[3]])
     }
 }
