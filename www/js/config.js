@@ -51,5 +51,5 @@ function set_render_settings () {
 	fric_grad.addColorStop(.5, '#fff');
 	fric_grad.addColorStop(1, '#333');
 
-	text_margin_h = FRIC_FONT_SIZE * .1;
+	text_margin_h = FRIC_FONT_SIZE * .05;
 }

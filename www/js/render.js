@@ -32,22 +32,29 @@ function draw_game_sc () {
 
 	draw_fric();
 
-	buff_ctx.font = (FRIC_FONT_SIZE*.5) + "px impact";
-	buff_ctx.fillStyle = '#000';
-	buff_ctx.fillText(fric_per_second+' € / second', W*.5, FRIC_FONT_SIZE+text_margin_h*2);
+	// combo bar
 }
 
 function draw_achievements_sc () {
+
+	buff_ctx.fillStyle = '#ee0';
+	buff_ctx.fillRect(0, 0, W, H);
 
 	draw_fric();
 }
 
 function draw_upgrades_sc () {
 
+	buff_ctx.fillStyle = '#e55';
+	buff_ctx.fillRect(0, 0, W, H);
+
 	draw_fric();
 }
 
 function draw_fric () {
+
+	buff_ctx.fillStyle = '#ccc';
+	buff_ctx.fillRect(0, 0, W, FRIC_FONT_SIZE*2);
 
 	buff_ctx.font = fric_font;
 	buff_ctx.fillStyle = fric_grad;
@@ -55,6 +62,10 @@ function draw_fric () {
 
 	buff_ctx.fillText(fric+' €', W*.5, text_margin_h);
 	buff_ctx.strokeText(fric+' €', W*.5, text_margin_h);
+
+	buff_ctx.font = (FRIC_FONT_SIZE*.5) + "px impact";
+	buff_ctx.fillStyle = '#000';
+	buff_ctx.fillText(fric_per_second+' € / second', W*.5, FRIC_FONT_SIZE+text_margin_h*2);
 }
 
 //res = 1280*800
