@@ -29,13 +29,12 @@ function draw_game_sc () {
 	buff_ctx.fillStyle = '#0f0';
 	buff_ctx.fillRect(BT_ACHIEVEMENTS[0], BT_ACHIEVEMENTS[1], BT_ACHIEVEMENTS[2], BT_ACHIEVEMENTS[3]);
 
-	// bt info
-	buff_ctx.fillStyle = '#fc0';
-	buff_ctx.fillRect(BT_INFO[0], BT_INFO[1], BT_INFO[2], BT_INFO[3]);
-
 	// bt bank
 	buff_ctx.fillStyle = '#00f';
 	buff_ctx.fillRect(BT_BANK[0], BT_BANK[1], BT_BANK[2], BT_BANK[3]);
+
+	// particles
+	buff_ctx.drawImage(particle_sprite, W*.2, H*.3);
 
 	// fric
 	draw_fric();
@@ -63,7 +62,7 @@ function draw_upgrades_sc () {
 
 function draw_fric () {
 
-	var fric_str = (fric*100|0) / 100;
+	var fric_str = fric<1e3 ? (fric*100|0)/100 : fric|0;
 
 	buff_ctx.fillStyle = '#e82d24';
 	buff_ctx.fillRect(0, 0, W, FRIC_FONT_SIZE*2);

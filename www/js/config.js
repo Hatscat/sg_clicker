@@ -116,7 +116,6 @@ function set_size () {
 	min_length = W < H ?  W : H;
 	BT_SIZE = .2 * min_length;
 	BT_ACHIEVEMENTS = [0, H-BT_SIZE, BT_SIZE, BT_SIZE];
-	BT_INFO = [W*.5-BT_SIZE*.5, H-BT_SIZE, BT_SIZE, BT_SIZE];
 	BT_BANK = [W-BT_SIZE, H-BT_SIZE, BT_SIZE, BT_SIZE];
 
 	COIN_RADIUS_S = 0.18 * min_length;
@@ -141,6 +140,7 @@ function set_render_settings () {
 	text_margin_h = FRIC_FONT_SIZE * .05;
 
 	coin_sprites = create_coin_sprites();
+	particle_sprite = create_coin_particle();
 }
 
 function create_coin_sprites () {
@@ -195,4 +195,19 @@ function create_coin_sprites () {
 		ctx.strokeText('€', coin_circle[0], coin_circle[1]);
 	}
 	return [c1, c2];
+}
+
+function create_coin_particle () {
+
+	var c = document.createElement('canvas');
+	var ctx = c.getContext('2d');
+	c.height = c.width = min_length * .1;
+
+	ctx.font = c.width + "px georgia";
+	ctx.fillStyle = '#ff9';
+	ctx.textAlign = 'center';
+	ctx.textBaseline = 'middle';
+	ctx.fillText('€', c.width*.5, c.width*.5);
+
+	return c;
 }
