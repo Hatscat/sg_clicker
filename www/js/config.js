@@ -19,9 +19,11 @@ function init_config () {
 	fric = 0;
 	fric_per_second = 1;
     fric_per_click = 1;
+    fric_refresh_time = 500;
     click_multiplier = 0;
     click_serie = 0;
     last_time_clicked = 0;
+    last_time_update = 0;
     time_combo = 500;
 	current_scene = SC_GAME;
 	time = 0; //in ms

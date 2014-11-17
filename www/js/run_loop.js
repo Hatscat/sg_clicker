@@ -8,7 +8,10 @@ function loop (t) {
         click_serie = 0;
         click_multiplier = 0;
     }
-	fric += fric_per_click*delta_time;
+    if(time >=last_time_update+fric_refresh_time){
+        fric += fric_per_second*(fric_refresh_time/1000);
+        last_time_update = time;
+    }
 	render();
 	requestAnimationFrame(loop);
 }
