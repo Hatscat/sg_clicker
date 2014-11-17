@@ -10,6 +10,6 @@ onmouseup = function () {
 	// TODO : add button events (instructions) here
 }
 
-function isMouseHover (box) {
+function isMouseHover (box) { // [x, y, w, h]
 	return mouse.x >= box[0] && mouse.x <= box[0] + box[2] && mouse.y >= box[1] && mouse.y <= box[1] + box[3];
 }
