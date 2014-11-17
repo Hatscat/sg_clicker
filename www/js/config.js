@@ -181,10 +181,19 @@ function set_size () {
 	BT_ACHIEVEMENTS = [0, H-BT_SIZE, BT_SIZE, BT_SIZE];
 	BT_BANK = [W-BT_SIZE, H-BT_SIZE, BT_SIZE, BT_SIZE];
 
+	BT_BACK_CIRCLE = [W-BT_SIZE*.5, BT_SIZE*.5, BT_SIZE*.3];
+	BT_INFO = [W-BT_SIZE, 0, BT_SIZE, BT_SIZE];
+	for (var i = SAVINGS.length; i--;) {
+		SAVINGS[i].box = [0, i*BT_SIZE, W-BT_SIZE, BT_SIZE];
+	}
+	for (var i = ACHIEVEMENTS.length; i--;) {
+		ACHIEVEMENTS[i].box = [0, i*BT_SIZE, W-BT_SIZE, BT_SIZE];
+	}
+
+
 	COIN_RADIUS_S = 0.18 * min_length;
 	COIN_RADIUS_L = 0.2 * min_length;
-
-	coin_circle = [W*.5, H*.5, COIN_RADIUS_L];
+	COIN_CIRCLE = [W*.5, H*.5, COIN_RADIUS_L];
 
 	set_render_settings();
 };
@@ -204,6 +213,7 @@ function set_render_settings () {
 
 	coin_sprites = create_coin_sprites();
 	particle_sprite = create_coin_particle();
+	back_bt_sprite = create_back_bt();
 }
 
 function create_coin_sprites () {
@@ -225,7 +235,7 @@ function create_coin_sprites () {
 
 		ctx.fillStyle = '#e4d095';
 		ctx.beginPath();
-		ctx.arc(coin_circle[0], coin_circle[1], radius1, 0, Math.PI*2);
+		ctx.arc(COIN_CIRCLE[0], COIN_CIRCLE[1], radius1, 0, Math.PI*2);
 		ctx.fill();
 
 		ctx.lineWidth = size * .08;
@@ -233,14 +243,14 @@ function create_coin_sprites () {
 		ctx.stroke();
 
 		ctx.beginPath();
-		ctx.arc(coin_circle[0], coin_circle[1], radius1-ctx.lineWidth/2, 0, Math.PI*2);
+		ctx.arc(COIN_CIRCLE[0], COIN_CIRCLE[1], radius1-ctx.lineWidth/2, 0, Math.PI*2);
 		ctx.lineWidth = size * .01;
 		ctx.strokeStyle = '#b95';
 		ctx.stroke();
 
 		ctx.fillStyle = '#ddd';
 		ctx.beginPath();
-		ctx.arc(coin_circle[0], coin_circle[1], radius2, 0, Math.PI*2);
+		ctx.arc(COIN_CIRCLE[0], COIN_CIRCLE[1], radius2, 0, Math.PI*2);
 		ctx.fill();
 
 		ctx.lineWidth = size * .01;
@@ -251,11 +261,11 @@ function create_coin_sprites () {
 		ctx.fillStyle = '#fff';
 		ctx.textAlign = 'center';
 		ctx.textBaseline = 'middle';
-		ctx.fillText('€', coin_circle[0], coin_circle[1]);
+		ctx.fillText('€', COIN_CIRCLE[0], COIN_CIRCLE[1]);
 
 		ctx.lineWidth = size * .01;
 		ctx.strokeStyle = '#555';
-		ctx.strokeText('€', coin_circle[0], coin_circle[1]);
+		ctx.strokeText('€', COIN_CIRCLE[0], COIN_CIRCLE[1]);
 	}
 	return [c1, c2];
 }
@@ -271,6 +281,31 @@ function create_coin_particle () {
 	ctx.textAlign = 'center';
 	ctx.textBaseline = 'middle';
 	ctx.fillText('€', c.width*.5, c.width*.5);
+
+	return c;
+}
+
+function create_back_bt () {
+
+	var c = document.createElement('canvas');
+	var ctx = c.getContext('2d');
+	c.width = W;
+	c.height = H;
+
+	ctx.fillStyle = '#d11';
+	ctx.beginPath();
+	ctx.arc(BT_BACK_CIRCLE[0], BT_BACK_CIRCLE[1], BT_BACK_CIRCLE[2], 0, Math.PI*2);
+	ctx.fill();
+
+	ctx.lineWidth = BT_BACK_CIRCLE[2] * .1;
+	ctx.strokeStyle = '#000';
+	ctx.stroke();
+
+	ctx.font = (BT_BACK_CIRCLE[2]*1.5) + "px Arial";
+	ctx.fillStyle = '#fff';
+	ctx.textAlign = 'center';
+	ctx.textBaseline = 'middle';
+	ctx.fillText('X', BT_BACK_CIRCLE[0], BT_BACK_CIRCLE[1]);
 
 	return c;
 }

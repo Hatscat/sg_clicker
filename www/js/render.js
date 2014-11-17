@@ -22,7 +22,7 @@ function draw_game_sc () {
 	buff_ctx.fillRect(0, 0, W, H);
 
 	// coin
-	var radius = isMouseHover_circle(coin_circle) && mouse.isDown ? 1 : 0;
+	var radius = isMouseHover_circle(COIN_CIRCLE) && mouse.isDown ? 1 : 0;
 	buff_ctx.drawImage(coin_sprites[radius], 0, 0);
 	
 	// bt achievement
@@ -49,7 +49,9 @@ function draw_achievements_sc () {
 	buff_ctx.fillStyle = '#ee0';
 	buff_ctx.fillRect(0, 0, W, H);
 
+
 	draw_fric();
+	buff_ctx.drawImage(back_bt_sprite, 0, 0);
 }
 
 function draw_upgrades_sc () {
@@ -58,6 +60,7 @@ function draw_upgrades_sc () {
 	buff_ctx.fillRect(0, 0, W, H);
 
 	draw_fric();
+	buff_ctx.drawImage(back_bt_sprite, 0, 0);
 }
 
 function draw_fric () {
