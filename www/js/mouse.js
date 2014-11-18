@@ -102,7 +102,7 @@ THE SOFTWARE.
                     var box = [SAVINGS[i].box[0],SAVINGS[i].box[1]+vertical_scroll*SAVINGS[i].box[3]+HEADER_H, SAVINGS[i].box[2], SAVINGS[i].box[3]];
                     var boxInfo = [BT_INFO[0], SAVINGS[i].box[1]+vertical_scroll*SAVINGS[i].box[3]+HEADER_H, BT_INFO[2], BT_INFO[3]];
 
-                    if(isMouseHover(boxInfo)){
+                    if(isMouseHover(boxInfo) && mouse.y >= HEADER_H){
                         window.open(SAVINGS[i].link,'_blank');
                     }
                     else if(isMouseHover(box) && fric >= SAVINGS[i].cost) {
