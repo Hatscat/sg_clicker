@@ -306,7 +306,7 @@ function init_config () {
 
     frame = 0;
 	fric = 0;
-	fric_per_second = 1;
+	fric_per_second = 0;
     fric_per_click = 1;
     fric_refresh_time = 100;
     achievements_refresh_time = 5000;
@@ -316,7 +316,7 @@ function init_config () {
     last_time_clicked = 0;
     last_time_fric_update = 0;
     last_time_achievemnts_update = 0;
-    time_combo = 1000;
+    time_combo = 500;
     is_new_saving = false;
     is_new_achievement = false;
     can_refresh_header = true;
@@ -327,6 +327,8 @@ function init_config () {
 	vertical_scroll = 0;
     particles_max_nb = 16;
     particles = [];
+    shadows_max_nb = 32;
+    shadows = [];
 	set_size();
 }
 

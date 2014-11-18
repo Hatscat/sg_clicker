@@ -17,7 +17,8 @@ function render () {
 
 function draw_game_sc () {
 
-	
+	var combo_ratio = click_multiplier/(CLICK_COMBO_LEVEL.length-1);
+
 	// BG
 	buff_ctx.globalAlpha = .7;
 	buff_ctx.fillStyle = '#000';
@@ -26,16 +27,26 @@ function draw_game_sc () {
 
 	//combo fx
 	if (click_multiplier) {
-		//buff_ctx.shadowColor = "#f33";
-		buff_ctx.shadowBlur = COIN_RADIUS_S * 50 * (Math.cos(time/1e3)+1)/2//*.004) / Math.sin(time*.002);
-		//console.log(buff_ctx.shadowBlur)
-		
-		buff_ctx.beginPath();
-		//buff_ctx.fillStyle = '#fff';
-		buff_ctx.arc(COIN_CIRCLE[0], COIN_CIRCLE[1], COIN_RADIUS_S, 0, Math.PI*2);
-		buff_ctx.fill();
 
-		buff_ctx.shadowBlur = 0;
+		var x = W*.5;
+		var y = H*.5;
+		var dir = time/(2e3-1500*combo_ratio)%Math.PI;
+		var dir_inc = Math.PI*2 / shadows_max_nb;
+		
+		buff_ctx.strokeStyle = '#e22';
+		buff_ctx.lineWidth = BT_SIZE * .1 + combo_ratio*BT_SIZE*.5;
+		buff_ctx.globalAlpha = .1 + combo_ratio*.2;
+
+		for (var i = shadows_max_nb; i--;) {
+
+			var s = time/(32-24*combo_ratio)*i%x; 
+			buff_ctx.beginPath();
+			buff_ctx.moveTo(x, y);
+			buff_ctx.lineTo(x+Math.cos(dir+=dir_inc)*s, y-Math.sin(dir)*s);
+			buff_ctx.stroke();
+		}
+
+		buff_ctx.globalAlpha = 1;
 	}
 
 	// coin
@@ -48,7 +59,7 @@ function draw_game_sc () {
 	// bt bank
 	buff_ctx.drawImage(bank_img, 0, 0, img_src_size, img_src_size, BT_BANK[0], BT_BANK[1], BT_BANK[2], BT_BANK[3]);
 
-	// combo
+	// combo text
 	if (click_multiplier && radius_id) {
 		buff_ctx.font = "bold " + BT_SIZE + "px impact";
 		buff_ctx.fillStyle = '#e22';
@@ -82,14 +93,14 @@ function draw_game_sc () {
 		buff_ctx.fillText('!', BT_BANK[0]+BT_BANK[2]*.5, BT_BANK[1]*.9);
 	}
 
-	if (can_refresh_header) {
-		can_refresh_header = false;
-		// fric
-		draw_fric();
-		// combo bar
-		buff_ctx.fillStyle = '#fff';
-		buff_ctx.fillRect(0, HEADER_H-text_margin_h*2, click_multiplier/(CLICK_COMBO_LEVEL.length-1)*W|0, text_margin_h*2);
-	}
+	//if (can_refresh_header) {
+		//can_refresh_header = false;
+	// fric
+	draw_fric();
+	// combo bar
+	buff_ctx.fillStyle = '#fff';
+	buff_ctx.fillRect(0, HEADER_H-text_margin_h*2, combo_ratio*W|0, text_margin_h*2);
+	//}
 }
 
 function draw_achievements_sc () {
@@ -161,9 +172,9 @@ function draw_savings_sc () {
 			buff_ctx.fillRect(SAVINGS[i].box[0], h, SAVINGS[i].box[2]*SAVINGS[i].nb_total/savings_value_max, SAVINGS[i].box[3]);
 			buff_ctx.fillStyle = buff_ctx.strokeStyle = '#000';
 			buff_ctx.font = (FRIC_FONT_SIZE*.6) + "px impact";
-			buff_ctx.fillText(SAVINGS[i].name, SAVINGS[i].box[2]*.5, h); // + ' ' + (SAVINGS[i].nb_total|0) + '%'
+			buff_ctx.fillText(SAVINGS[i].name, SAVINGS[i].box[2]*.5+text_margin_h, h); // + ' ' + (SAVINGS[i].nb_total|0) + '%'
 			buff_ctx.font = (FRIC_FONT_SIZE*.45) + "px georgia";
-			buff_ctx.fillText((SAVINGS[i].cost|0)+' €', SAVINGS[i].box[2]*.5, h+FRIC_FONT_SIZE*.25+text_margin_h*4.5);
+			buff_ctx.fillText((SAVINGS[i].cost|0)+' €', SAVINGS[i].box[2]*.5, h+FRIC_FONT_SIZE*.25+text_margin_h*5);
 			buff_ctx.font = "italic " + (FRIC_FONT_SIZE*.5) + "px georgia";
 			buff_ctx.fillText(SAVINGS[i].description, SAVINGS[i].box[2]*.5, h+FRIC_FONT_SIZE*.5+text_margin_h*8);
 			buff_ctx.strokeRect(SAVINGS[i].box[0], h, W, SAVINGS[i].box[3]);
@@ -198,7 +209,7 @@ function draw_fric () {
 
 	buff_ctx.font = (FRIC_FONT_SIZE*.4) + "px impact";
 	buff_ctx.fillStyle = '#eee';
-	buff_ctx.fillText(fric_per_second+' € / second', W*.5, FRIC_FONT_SIZE+text_margin_h*2);
+	buff_ctx.fillText((fric_per_second|0)+' € / second', W*.5, FRIC_FONT_SIZE+text_margin_h*2);
 }
 
 //res = 1280*800
