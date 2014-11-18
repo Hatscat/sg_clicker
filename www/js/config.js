@@ -304,7 +304,6 @@ function init_config () {
     fb_img = new Image();
     fb_img.src = 'img/fb-icon.png';
 
-
 	fric = 0;
 	fric_per_second = 1;
     fric_per_click = 1;
@@ -325,6 +324,7 @@ function init_config () {
 	delta_time = 1;
 	old_timestamp = 0;
 	vertical_scroll = 0;
+    particles_max_nb = 16;
     particles = [];
 	set_size();
 }
@@ -335,6 +335,10 @@ function set_size () {
 	canvas.height = main_buffer.height = H = window.innerHeight;
 
 	min_length = W < H ?  W : H;
+    gravity = -min_length *.0015;
+    particle_speed_min = min_length *.01;
+    particles_min_size = min_length *.03;
+    particles_max_size = min_length *.07;
 	BT_SIZE = .2 * min_length;
     BT_SHIFT = .2 * BT_SIZE;
 	BT_ACHIEVEMENTS = [BT_SHIFT, H-BT_SIZE-BT_SHIFT, BT_SIZE, BT_SIZE];
@@ -366,6 +370,7 @@ function set_render_settings () {
     HEADER_H = FRIC_FONT_SIZE*2;
 	buff_ctx.textAlign = 'center';
 	buff_ctx.textBaseline = 'top';
+    buff_ctx.shadowColor = "#f33";
 	fric_font = FRIC_FONT_SIZE + "px impact";
 	fric_grad = buff_ctx.createLinearGradient(0, 0, 0, FRIC_FONT_SIZE);
 	fric_grad.addColorStop(0, '#333');
@@ -375,7 +380,6 @@ function set_render_settings () {
 	text_margin_h = FRIC_FONT_SIZE * .1;
 
 	coin_sprites = create_coin_sprites();
-	particle_sprite = create_coin_particle();
 	back_bt_sprite = create_back_bt();
     info_bt_sprite = create_info_bt();
     achievement_star_sprites = create_achievements();
@@ -433,21 +437,6 @@ function create_coin_sprites () {
 		ctx.strokeText('€', COIN_CIRCLE[0], COIN_CIRCLE[1]);
 	}
 	return [c1, c2];
-}
-
-function create_coin_particle () {
-
-	var c = document.createElement('canvas');
-	var ctx = c.getContext('2d');
-	c.height = c.width = min_length * .1;
-
-	ctx.font = c.width + "px georgia";
-	ctx.fillStyle = '#ff9';
-	ctx.textAlign = 'center';
-	ctx.textBaseline = 'middle';
-	ctx.fillText('€', c.width*.5, c.width*.5);
-
-	return c;
 }
 
 function create_back_bt () {
