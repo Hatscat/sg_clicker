@@ -47,7 +47,7 @@ function draw_game_sc () {
 		
 		buff_ctx.strokeStyle = '#e22';
 		buff_ctx.lineWidth = BT_SIZE * .1 + combo_ratio*BT_SIZE*.5;
-		buff_ctx.globalAlpha = .1 + combo_ratio*.35;
+		buff_ctx.globalAlpha = .1 + combo_ratio*.4;
 
 		for (var i = shadows_max_nb; i--;) {
 
