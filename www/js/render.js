@@ -19,36 +19,36 @@ function draw_game_sc () {
 
 	// BG
 	buff_ctx.fillStyle = '#000';
-	buff_ctx.fillRect(0, 0, W, H);
+	buff_ctx.fillRect(0, HEADER_H, W, H);
 
 	// coin
 	var radius = isMouseHover_circle(COIN_CIRCLE) && mouse.isDown ? 1 : 0;
 	buff_ctx.drawImage(coin_sprites[radius], 0, 0);
 	
 	// bt achievement
-	buff_ctx.fillStyle = '#0f0';
-	buff_ctx.fillRect(BT_ACHIEVEMENTS[0], BT_ACHIEVEMENTS[1], BT_ACHIEVEMENTS[2], BT_ACHIEVEMENTS[3]);
+	buff_ctx.drawImage(trophy_img, 0, 0, img_src_size, img_src_size, BT_ACHIEVEMENTS[0], BT_ACHIEVEMENTS[1], BT_ACHIEVEMENTS[2], BT_ACHIEVEMENTS[3]);
 
 	// bt bank
-	buff_ctx.fillStyle = '#00f';
-	buff_ctx.fillRect(BT_BANK[0], BT_BANK[1], BT_BANK[2], BT_BANK[3]);
+	buff_ctx.drawImage(bank_img, 0, 0, img_src_size, img_src_size, BT_BANK[0], BT_BANK[1], BT_BANK[2], BT_BANK[3]);
 
 	// particles
 	buff_ctx.drawImage(particle_sprite, W*.2, H*.3);
 
-	// fric
-	draw_fric();
-
-	// combo bar
-	buff_ctx.fillStyle = '#fff';
-	buff_ctx.fillRect(0, FRIC_FONT_SIZE*2-text_margin_h*2, click_multiplier/(CLICK_COMBO_LEVEL.length-1)*W|0, text_margin_h*2);
+	if (can_refresh_header) {
+		can_refresh_header = false;
+		// fric
+		draw_fric();
+		// combo bar
+		buff_ctx.fillStyle = '#fff';
+		buff_ctx.fillRect(0, HEADER_H-text_margin_h*2, click_multiplier/(CLICK_COMBO_LEVEL.length-1)*W|0, text_margin_h*2);
+	}
 }
 
 function draw_achievements_sc () {
 
 	// BG
 	buff_ctx.fillStyle = '#eee';
-	buff_ctx.fillRect(0, 0, W, H);
+	buff_ctx.fillRect(0, HEADER_H, W, H);
 
 	// achievements
 	buff_ctx.fillStyle = buff_ctx.strokeStyle = '#000';
@@ -58,9 +58,9 @@ function draw_achievements_sc () {
 		
 		vertical_scroll = vertical_scroll<0 ? vertical_scroll>1-ACHIEVEMENTS.length ? vertical_scroll : 1-ACHIEVEMENTS.length : 0;
 
-		var h = ACHIEVEMENTS[i].box[1] + vertical_scroll*ACHIEVEMENTS[i].box[3] + FRIC_FONT_SIZE*2;
+		var h = ACHIEVEMENTS[i].box[1] + vertical_scroll*ACHIEVEMENTS[i].box[3] + HEADER_H*1.025;
 		
-		if (h < H && h >= FRIC_FONT_SIZE*2) { // test if on screen
+		if (h < H && h >= HEADER_H) { // test if on screen
 			// stars
 			if (ACHIEVEMENTS[i].gotIt) {
 				buff_ctx.fillStyle = '#ffc';
@@ -79,19 +79,24 @@ function draw_achievements_sc () {
 		}
 	}
 
-	// fric
-	draw_fric();
-	// sprite partage
-	// sprite classement
-	// sprite back
-	buff_ctx.drawImage(back_bt_sprite, 0, 0);
+	if (can_refresh_header) {
+		can_refresh_header = false;
+		// fric
+		draw_fric();
+		// sprite partage
+		buff_ctx.drawImage(fb_img, 0, 0, img_src_size, img_src_size, BT_FB[0], BT_FB[1], BT_FB[2], BT_FB[3]);
+		// sprite classement
+		buff_ctx.drawImage(podium_img, 0, 0, img_src_size, img_src_size, BT_PODIUM[0], BT_PODIUM[1], BT_PODIUM[2], BT_PODIUM[3]);
+		// sprite back
+		buff_ctx.drawImage(back_bt_sprite, 0, 0);
+	}
 }
 
 function draw_savings_sc () {
 
 	// BG
 	buff_ctx.fillStyle = '#eee';
-	buff_ctx.fillRect(0, 0, W, H);
+	buff_ctx.fillRect(0, HEADER_H, W, H);
 
 	// savings + info bts
 	buff_ctx.fillStyle = buff_ctx.strokeStyle = '#000';
@@ -101,9 +106,9 @@ function draw_savings_sc () {
 		
 		vertical_scroll = vertical_scroll<0 ? vertical_scroll>1-SAVINGS.length ? vertical_scroll : 1-SAVINGS.length : 0;
 
-		var h = SAVINGS[i].box[1] + vertical_scroll*SAVINGS[i].box[3] + FRIC_FONT_SIZE*2;
+		var h = SAVINGS[i].box[1] + vertical_scroll*SAVINGS[i].box[3] + HEADER_H*1.025;
 		
-		if (h < H && h >= FRIC_FONT_SIZE*2) { // test if on screen
+		if (h < H && h >= HEADER_H) { // test if on screen
 			buff_ctx.font = (FRIC_FONT_SIZE*.6) + "px impact";
 			buff_ctx.fillText(SAVINGS[i].name + " x" + (SAVINGS[i].nb_total|0), SAVINGS[i].box[2]*.5, h+text_margin_h);
 			buff_ctx.font = "italic " + (FRIC_FONT_SIZE*.5) + "px georgia";
@@ -114,11 +119,13 @@ function draw_savings_sc () {
 		}
 	}
 
-	// fric
-	draw_fric();
-
-	// sprite back
-	buff_ctx.drawImage(back_bt_sprite, 0, 0);
+	if (can_refresh_header) {
+		can_refresh_header = false;
+		// fric
+		draw_fric();
+		// sprite back
+		buff_ctx.drawImage(back_bt_sprite, 0, 0);
+	}
 }
 
 function draw_fric () {
@@ -126,7 +133,7 @@ function draw_fric () {
 	var fric_str = fric<1e3 ? (fric*100|0)/100 : fric|0;
 
 	buff_ctx.fillStyle = '#e82d24';
-	buff_ctx.fillRect(0, 0, W, FRIC_FONT_SIZE*2);
+	buff_ctx.fillRect(0, 0, W, HEADER_H);
 
 	buff_ctx.font = fric_font;
 	buff_ctx.fillStyle = fric_grad;

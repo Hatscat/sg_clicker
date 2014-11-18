@@ -280,6 +280,17 @@ function init_config () {
         },
     ];
 
+    img_src_size = 256; //!\\
+    bank_img = new Image();
+    bank_img.src = 'img/bank-icon.png';
+    trophy_img = new Image();
+    trophy_img.src = 'img/trophy-icon.png';
+    podium_img = new Image();
+    podium_img.src = 'img/podium-icon.png';
+    fb_img = new Image();
+    fb_img.src = 'img/fb-icon.png';
+
+
 	fric = 0;
 	fric_per_second = 1;
     fric_per_click = 1;
@@ -290,9 +301,10 @@ function init_config () {
     last_time_clicked = 0;
     last_time_fric_update = 0;
     last_time_achievemnts_update = 0;
-    time_combo = 500;
+    time_combo = 1000;
     is_new_saving = false;
     is_new_achievement = false;
+    can_refresh_header = true;
 	current_scene = SC_GAME;
 	time = 0; //in ms
 	delta_time = 1;
@@ -309,8 +321,11 @@ function set_size () {
 
 	min_length = W < H ?  W : H;
 	BT_SIZE = .2 * min_length;
-	BT_ACHIEVEMENTS = [0, H-BT_SIZE, BT_SIZE, BT_SIZE];
-	BT_BANK = [W-BT_SIZE, H-BT_SIZE, BT_SIZE, BT_SIZE];
+    BT_SHIFT = .2 * BT_SIZE;
+	BT_ACHIEVEMENTS = [BT_SHIFT, H-BT_SIZE-BT_SHIFT, BT_SIZE, BT_SIZE];
+    BT_BANK = [W-BT_SIZE-BT_SHIFT, H-BT_SIZE-BT_SHIFT, BT_SIZE, BT_SIZE];
+    BT_FB = [BT_SHIFT*.5, BT_SHIFT, BT_SIZE*.6, BT_SIZE*.6];
+	BT_PODIUM = [BT_SIZE*.6+BT_SHIFT*1.5, BT_SHIFT, BT_SIZE*.6, BT_SIZE*.6];
 
 	BT_BACK_CIRCLE = [W-BT_SIZE*.5, BT_SIZE*.5, BT_SIZE*.3];
 	BT_INFO = [W-BT_SIZE, 0, BT_SIZE, BT_SIZE];
@@ -333,6 +348,7 @@ function set_size () {
 function set_render_settings () {
 
 	FRIC_FONT_SIZE = min_length * .1;
+    HEADER_H = FRIC_FONT_SIZE*2;
 	buff_ctx.textAlign = 'center';
 	buff_ctx.textBaseline = 'top';
 	fric_font = FRIC_FONT_SIZE + "px impact";
