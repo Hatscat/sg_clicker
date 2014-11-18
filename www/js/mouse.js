@@ -41,7 +41,7 @@ THE SOFTWARE.
             }
         }
     }
-    document.addEventListener("touchmove", function(e){
+/*    document.addEventListener("touchmove", function(e){
 		m.oldX = m.x;
 		m.oldY = m.y;
 		m.x = e.x;
@@ -56,7 +56,7 @@ THE SOFTWARE.
                 m.target.y = m.y;
             }
         }
-    }, false);
+    }, false);*/
     onmousedown = function (e) {
         if(!mouse.isDown){
             m.target.x = e.x;
