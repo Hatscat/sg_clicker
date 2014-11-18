@@ -29,17 +29,25 @@ function init_events(){
             }   
         }
         else if(current_scene === SC_ACHIEVEMENTS){
-            //ACHIEVEMNT EVENTS
+            if(isMouseHover_circle(BT_BACK_CIRCLE)){
+                current_scene = SC_GAME;
+            }
         }
         else if(current_scene === SC_BANK){
-            for(var i in SAVINGS){
-                if(isMouseHover(SAVINGS[i].box) && fric >= SAVINGS[i].cost){
+            if(isMouseHover_circle(BT_BACK_CIRCLE)){
+                current_scene = SC_GAME;
+            }
+            /*for(var i=0;i< SAVINGS.length;i++){
+                var box = [SAVINGS[i].box[0],SAVINGS[i].box[1]+vertical_scroll*SAVINGS[i].box[3],SAVINGS[i].box[2],SAVINGS[i].box[3]];
+                if(isMouseHover(box) && fric >= SAVINGS[i].cost) {
+                    console.log(SAVINGS[i].name);
                     fric -= SAVINGS[i].cost;
                     fric_per_second += SAVINGS[i].fric_per_second;
                     SAVINGS[i].nb_total++;
                     SAVINGS[i].cost += SAVINGS[i].cost*10/100;
+                    break;
                 }
-            }
+            }*/
         }
     }
     onmousewheel = DOMMouseScroll = function (e) {
@@ -49,6 +57,9 @@ function init_events(){
     	//console.log(vertical_scroll);
     	// TODO : // isMouseHover([box[0], box[1]-vertical_scroll*box[3], box[2], box[3]])
     }
+    onwheel = function(e) {
+        vertical_scroll += Math.abs(e.deltaY)/e.deltaY;
+    } 
 }
 // params : [x, y, w, h]
 // return true is mouse is on the box

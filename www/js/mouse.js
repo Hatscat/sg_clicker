@@ -46,14 +46,15 @@ THE SOFTWARE.
 		m.y = e.y;
 		m.moveX = m.x == m.oldX ? 0 : m.x < m.oldX ? -1 : 1;
 		m.moveY = m.y == m.oldY ? 0 : m.y < m.oldY ? -1 : 1;
-	});*/
+	});
 	addEventListener('mousedown', function (e)
 	{
+        if()
 		m.e = e;
 		m.pressed = true;
 		m.target.x = e.x;
 		m.target.y = e.y;
-	});
+	});*/
 	/*addEventListener('mouseup', function (e)
 	{
 		m.e = e;
