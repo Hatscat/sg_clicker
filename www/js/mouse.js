@@ -41,6 +41,22 @@ THE SOFTWARE.
             }
         }
     }
+    document.addEventListener("touchmove", function(e){
+		m.oldX = m.x;
+		m.oldY = m.y;
+		m.x = e.x;
+		m.y = e.y;
+		m.moveX = m.x == m.oldX ? 0 : m.x < m.oldX ? -1 : 1;
+		m.moveY = m.y == m.oldY ? 0 : m.y < m.oldY ? -1 : 1;
+        if(mouse.isDown){
+            var distanceParcourue = m.y-m.target.y;
+            if(Math.abs(distanceParcourue) >= SAVINGS[0].box[3]){
+                vertical_scroll -= Math.abs(distanceParcourue)/distanceParcourue;
+                m.isScrolling = true;
+                m.target.y = m.y;
+            }
+        }
+    }, false);
     onmousedown = function (e) {
         if(!mouse.isDown){
             m.target.x = e.x;
