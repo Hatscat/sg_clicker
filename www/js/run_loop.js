@@ -52,7 +52,7 @@ function set_new_bg_fx () {
                 fric_fx[i] = {
                     font: size + "px georgia",
                     style: 'rgb('+color+','+color+','+color+')',
-                    x: Math.random()*W,
+                    x: Math.random(),
                     y: 0,
                     speed: fric_fx_speed_min + Math.random() * fric_fx_speed_min * 3,
                 };

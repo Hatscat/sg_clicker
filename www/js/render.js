@@ -33,7 +33,7 @@ function draw_game_sc () {
 			//console.log(fric_fx[i].y)
 			buff_ctx.font = fric_fx[i].font;
 			buff_ctx.fillStyle = fric_fx[i].style;
-			buff_ctx.fillText('€', fric_fx[i].x, fric_fx[i].y+=fric_fx[i].speed);
+			buff_ctx.fillText('€', fric_fx[i].x*W, fric_fx[i].y+=fric_fx[i].speed);
 		}
 	}
 
@@ -211,6 +211,25 @@ function draw_savings_sc () {
 function draw_fric () {
 
 	var fric_str = fric<1e3 ? (fric*100|0)/100 : fric|0;
+	var fric_arr = (fric_str+'').split('');
+
+	var j = fric_arr.length - 3;
+	if (j>3) {
+		fric_arr.splice(j);
+	}
+	for (var i = fric_arr.length; i > 0;) {
+		i-=3;
+
+		if (fric_arr[i]) {
+			fric_arr.splice(i, 0, ' ');
+		}
+	}
+	if (j>3) {
+		fric_arr.push('K');
+	}
+
+
+	fric_str = fric_arr.join('');
 
 	buff_ctx.fillStyle = '#e82d24';
 	buff_ctx.fillRect(0, 0, W, HEADER_H);
