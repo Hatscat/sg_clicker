@@ -12,6 +12,7 @@ function init_events(){
         mouse.isDown = false;
         if(current_scene === SC_GAME){
             if(isMouseHover_circle(COIN_CIRCLE)){
+                set_new_particles();
                 fric += fric_per_click*CLICK_COMBO_LEVEL[click_multiplier].multiplier;
                 click_serie++;
                 total_click++;
@@ -57,15 +58,14 @@ function init_events(){
             }
         }
     }
-    onmousewheel = DOMMouseScroll = function (e) {
-
+    onmousewheel = function (e) {
     	vertical_scroll += Math.abs(e.wheelDeltaY)/e.wheelDeltaY;
     	//console.log(e);
     	//console.log(vertical_scroll);
     	// TODO : // isMouseHover([box[0], box[1]-vertical_scroll*box[3], box[2], box[3]])
     }
     onwheel = function(e) {
-        vertical_scroll += Math.abs(e.deltaY)/e.deltaY;
+        vertical_scroll -= Math.abs(e.deltaY)/e.deltaY;
     } 
 }
 // params : [x, y, w, h]
@@ -77,4 +77,24 @@ function isMouseHover (box) {
 // return true is mouse is on the circle
 function isMouseHover_circle (circle) {
    return (mouse.x-circle[0])*(mouse.x-circle[0])+(mouse.y-circle[1])*(mouse.y-circle[1]) < circle[2]*circle[2];
+}
+
+function set_new_particles () {
+
+    for (var i = particles_max_nb; i--;) {
+
+        var size = particles_min_size + Math.random() * particles_max_size | 0;
+        var fade = size / particles_max_size;
+        var color = fade*220|0;
+
+        particles.push({
+            font: size + "px georgia",
+            style: 'rgb('+color+','+color+',0)',
+            x: mouse.x,
+            y: mouse.y,
+            dir: Math.PI * 2 * i / particles_max_nb,
+            speed: particle_speed_min + Math.random() * particle_speed_min * 3,
+            gravity: 0
+        });
+    }
 }
