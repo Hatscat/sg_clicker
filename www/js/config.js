@@ -25,7 +25,7 @@ function init_config () {
             cost:100,
             fric_per_second:10,            
             nb_total:0,
-            description:"Une épargne de hippie",
+            description:"Une épargne d'écolo",
             link:"https://particuliers.societegenerale.fr/epargner/par_type_de_placements/livrets_epargne/livret_developpement_durable.html"
         },
         {
@@ -179,7 +179,7 @@ function init_config () {
         },
         {
             name:"Trilionaire",
-            description:"Avoir 1 000 000 000 000 000 000 euros",
+            description:"Avoir un trilliard euros",
             gotIt:false,
             varUsed: "fric",
             valueToPass:10000000000000000000,
