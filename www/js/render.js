@@ -33,7 +33,7 @@ function draw_game_sc () {
 			//console.log(fric_fx[i].y)
 			buff_ctx.font = fric_fx[i].font;
 			buff_ctx.fillStyle = fric_fx[i].style;
-			buff_ctx.fillText('€', fric_fx[i].x*W, fric_fx[i].y+=fric_fx[i].speed);
+			buff_ctx.fillText('€', fric_fx[i].x*W, fric_fx[i].y+=fric_fx[i].speed*delta_time);
 		}
 	}
 
@@ -90,8 +90,8 @@ function draw_game_sc () {
 		} else {
 			buff_ctx.font = particles[i].font;
 			buff_ctx.fillStyle = particles[i].style;
-			buff_ctx.fillText('€', particles[i].x+=Math.cos(particles[i].dir)*particles[i].speed, particles[i].y-=Math.sin(particles[i].dir)*particles[i].speed+particles[i].gravity);
-			particles[i].gravity += gravity;
+			buff_ctx.fillText('€', particles[i].x+=Math.cos(particles[i].dir)*particles[i].speed*delta_time, particles[i].y-=(Math.sin(particles[i].dir)*particles[i].speed+particles[i].gravity)*delta_time);
+			particles[i].gravity += gravity*delta_time;
 		}
 	}
 
