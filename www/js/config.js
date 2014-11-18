@@ -328,7 +328,6 @@ function init_config () {
     particles_max_nb = 16;
     particles = [];
     shadows_max_nb = 32;
-    shadows = [];
 	set_size();
 }
 
