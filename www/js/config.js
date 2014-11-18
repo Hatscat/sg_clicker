@@ -309,7 +309,7 @@ function init_config () {
 	fric_per_second = 0;
     fric_per_click = 1;
     fric_refresh_time = 100;
-    achievements_refresh_time = 5000;
+    achievements_refresh_time = 2000;
     click_multiplier = 0;
     click_serie = 0;
     total_click = 0;
