@@ -138,7 +138,7 @@ function draw_achievements_sc () {
 		if (h < H && h >= HEADER_H) { // test if on screen
 			// stars
 			if (ACHIEVEMENTS[i].gotIt) {
-				buff_ctx.fillStyle = '#ff7';
+				buff_ctx.fillStyle = '#ff8';
 				buff_ctx.fillRect(ACHIEVEMENTS[i].box[0], h, W, ACHIEVEMENTS[i].box[3]);
 				buff_ctx.drawImage(achievement_star_sprites[1], BT_INFO[0], h);
 				buff_ctx.fillStyle = buff_ctx.strokeStyle;
@@ -184,7 +184,7 @@ function draw_savings_sc () {
 		
 		if (h < H && h >= HEADER_H) { // test if on screen
 
-			buff_ctx.fillStyle = buff_ctx.strokeStyle = '#ff7';
+			buff_ctx.fillStyle = buff_ctx.strokeStyle = '#ff8';
 			buff_ctx.fillRect(SAVINGS[i].box[0], h, SAVINGS[i].box[2]*SAVINGS[i].nb_total/savings_value_max, SAVINGS[i].box[3]);
 			buff_ctx.fillStyle = buff_ctx.strokeStyle = '#000';
 			buff_ctx.font = (FRIC_FONT_SIZE*.6) + "px impact";
