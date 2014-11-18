@@ -14,6 +14,7 @@ function init_events(){
             if(isMouseHover_circle(COIN_CIRCLE)){
                 fric += fric_per_click*CLICK_COMBO_LEVEL[click_multiplier].multiplier;
                 click_serie++;
+                total_click++;
                 last_time_clicked = time;
                 if(click_multiplier != CLICK_COMBO_LEVEL.length-1){
                     if(click_serie > CLICK_COMBO_LEVEL[click_multiplier+1].clicks)
@@ -29,16 +30,18 @@ function init_events(){
             }   
         }
         else if(current_scene === SC_ACHIEVEMENTS){
+            is_new_achievement = false;
             if(isMouseHover_circle(BT_BACK_CIRCLE)){
                 current_scene = SC_GAME;
             }
         }
         else if(current_scene === SC_BANK){
+            is_new_saving = false;
             if(isMouseHover_circle(BT_BACK_CIRCLE)){
                 current_scene = SC_GAME;
             }
-            /*for(var i=0;i< SAVINGS.length;i++){
-                var box = [SAVINGS[i].box[0],SAVINGS[i].box[1]+vertical_scroll*SAVINGS[i].box[3],SAVINGS[i].box[2],SAVINGS[i].box[3]];
+            for(var i=0;i< SAVINGS.length;i++){
+                var box = [SAVINGS[i].box[0],SAVINGS[i].box[1]+vertical_scroll*SAVINGS[i].box[3]+HEADER_H,SAVINGS[i].box[2],SAVINGS[i].box[3]];
                 if(isMouseHover(box) && fric >= SAVINGS[i].cost) {
                     console.log(SAVINGS[i].name);
                     fric -= SAVINGS[i].cost;
@@ -47,7 +50,7 @@ function init_events(){
                     SAVINGS[i].cost += SAVINGS[i].cost*10/100;
                     break;
                 }
-            }*/
+            }
         }
     }
     onmousewheel = DOMMouseScroll = function (e) {

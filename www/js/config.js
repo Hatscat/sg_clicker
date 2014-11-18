@@ -78,15 +78,16 @@ function init_config () {
             gotIt:false,
             varUsed: "fric",
             valueToPass: 1,
-            reward: 1 //in percent of fric per second
+            reward: 10 //in percent of fric per second
         },
         {
             name:'Wake and Bank',
             description:"Aquiert ta première épargne",
             gotIt:false,
-            varUsed: "SAVINGS[0].nb_total",
+            varUsed: "SAVINGS",
+            saving:0,
             valueToPass:1,
-            reward: 1
+            reward: 10
         },    
         {
             name:'Clic noob',
@@ -94,7 +95,7 @@ function init_config () {
             gotIt:false,
             varUsed: "total_click",
             valueToPass:100,
-            reward: 1
+            reward: 10
         },
         {
             name:'Big clic',
@@ -102,7 +103,7 @@ function init_config () {
             gotIt:false,
             varUsed: "total_click",
             valueToPass:1000,
-            reward: 3
+            reward: 10
         },
         {
             name:'Clic clic',
@@ -110,7 +111,7 @@ function init_config () {
             gotIt:false,
             varUsed: "total_click",
             valueToPass:10000,
-            reward: 5
+            reward: 10
         },
         {
             name:'Plus de doigt',
@@ -118,7 +119,7 @@ function init_config () {
             gotIt:false,
             varUsed: "total_click",
             valueToPass:1000000,
-            reward: 10,
+            reward: 20,
         },
         {
             name:'Plus de souris',
@@ -126,7 +127,7 @@ function init_config () {
             gotIt:false,
             varUsed: "total_click",
             valueToPass:1000000000,
-            reward: 15
+            reward: 25
         },
         {
             name:'Cheat Clic',
@@ -134,7 +135,7 @@ function init_config () {
             gotIt:false,
             varUsed: "total_click",
             valueToPass:1000000000000,
-            reward: 20
+            reward: 30
         },
         {
             name:"C'est un début",
@@ -142,7 +143,7 @@ function init_config () {
             gotIt:false,
             varUsed: "fric",
             valueToPass:1000,
-            reward: 1
+            reward: 10
         },
         {
             name:"Un bon paquet",
@@ -150,7 +151,7 @@ function init_config () {
             gotIt:false,
             varUsed: "fric",
             valueToPass:10000,
-            reward: 3
+            reward: 10
         },
         {
             name:"Une petite fortune",
@@ -158,7 +159,7 @@ function init_config () {
             gotIt:false,
             varUsed: "fric",
             valueToPass:100000,
-            reward: 5
+            reward: 15
         },        
         {
             name:"Millionaire",
@@ -182,102 +183,114 @@ function init_config () {
             gotIt:false,
             varUsed: "fric",
             valueToPass:10000000000000000000,
-            reward: 50
+            reward: 30
         },
         {
             name:"A demi",
             description:"Remplir son Livret A à 50%",
             gotIt:false,
-            varUsed: "SAVINGS[1].nb_total",
-            valueToPass:50,
+            varUsed: "SAVINGS",
+            saving:1,
+            valueToPass:30,
             reward: 5,
         },  
         {
             name:"A plein temps",
             description:"Remplir son Livret A à 100%",
             gotIt:false,
-            varUsed: "SAVINGS[1].nb_total",
+            varUsed: "SAVINGS",
+            saving:1,
             valueToPass:100,
-            reward: 10,
+            reward: 20,
         },   
         {
             name:"Une belle foret",
             description:"Remplir son LDD à 50%",
             gotIt:false,
-            varUsed: "SAVINGS[0].nb_total",
-            valueToPass:50,
+            varUsed: "SAVINGS",
+            saving:0,
+            valueToPass:30,
             reward: 5,
         },
         {
             name:"Gaia power",
             description:"Remplir son LDD à 100%",
             gotIt:false,
-            varUsed: "SAVINGS[0].nb_total",
+            varUsed: "SAVINGS",
+            saving:0,
             valueToPass:100,
-            reward: 10,
+            reward: 20,
         },
         {
             name:"LEP-reuve epargne",
             description:"Remplir son LEP à 50%",
             gotIt:false,
-            varUsed: "SAVINGS[2].nb_total",
+            varUsed: "SAVINGS",
+            saving:2,
             valueToPass:50,
-            reward: 5
+            reward: 30
         },
         {
             name:"Full LEP",
             description:"Remplir son LEP à 100%",
             gotIt:false,
-            varUsed: "SAVINGS[2].nb_total",
+            varUsed: "SAVINGS",
+            saving:2,
             valueToPass:100,
-            reward: 10
+            reward: 20
         },
         {
             name:"Jeune et prudent",
             description:"Remplir son Livret Jeune à 50%",
             gotIt:false,
-            varUsed: "SAVINGS[3].nb_total",
+            varUsed: "SAVINGS",
+            saving:3,
             valueToPass:50,
-            reward: 5
+            reward: 30
         },
         {
             name:"Jeune et malin",
             description:"Remplir son Livret Jeune à 100%",
-            varUsed: "SAVINGS[3].nb_total",
+            varUsed: "SAVINGS",
+            saving:3,
             valueToPass:100,
-            reward: 10
+            reward: 30
         },
         {
             name:"Epargne à la PEL",
             description:"Remplir son PEL à 50%",
             gotIt:false,
-            varUsed: "SAVINGS[4].nb_total",
+            varUsed: "SAVINGS",
+            saving:4,
             valueToPass:50,
-            reward: 5
+            reward: 20
         },
         {
             name:"PEL de chantier",
             description:"Remplir son PEL à 100%",
             gotIt:false,
-            varUsed: "SAVINGS[4].nb_total",
+            varUsed: "SAVINGS",
+            saving:4,
             valueToPass:100,
-            reward: 10
+            reward: 30
         },
         {
             name:"CEL et poivre",
             description:"Remplir son Livret Jeune à 50%",
             gotIt:false,
-            varUsed: "SAVINGS[5].nb_total",
+            varUsed: "SAVINGS",
+            saving:5,
             valueToPass:50,
-            reward: 5
+            reward: 20
         },
         {
             name:"Passe moi le CEL",
             description:"Remplir son Livret Jeune à 100%",
             gotIt:false,
-            varUsed: "SAVINGS[5].nb_total",
+            varUsed: "SAVINGS",
+            saving:5,
             valueToPass:100,
-            reward: 10
+            reward: 50
         },
     ];
 
@@ -296,9 +309,10 @@ function init_config () {
 	fric_per_second = 1;
     fric_per_click = 1;
     fric_refresh_time = 100;
-    achievements_refresh_time = 1000;
+    achievements_refresh_time = 5000;
     click_multiplier = 0;
     click_serie = 0;
+    total_click = 0;
     last_time_clicked = 0;
     last_time_fric_update = 0;
     last_time_achievemnts_update = 0;
