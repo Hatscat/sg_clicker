@@ -18,6 +18,7 @@ function init_config () {
         {clicks:140,multiplier:6},
         {clicks:200,multiplier:10}
     ];
+    savings_value_max = 100;
     SAVINGS = [
         {
             name:'LDD',

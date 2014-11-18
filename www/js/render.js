@@ -63,7 +63,7 @@ function draw_achievements_sc () {
 		if (h < H && h >= HEADER_H) { // test if on screen
 			// stars
 			if (ACHIEVEMENTS[i].gotIt) {
-				buff_ctx.fillStyle = '#ffc';
+				buff_ctx.fillStyle = '#ffb';
 				buff_ctx.fillRect(ACHIEVEMENTS[i].box[0], h, W, ACHIEVEMENTS[i].box[3]);
 				buff_ctx.drawImage(achievement_star_sprites[1], BT_INFO[0], h);
 				buff_ctx.fillStyle = buff_ctx.strokeStyle;
@@ -99,7 +99,6 @@ function draw_savings_sc () {
 	buff_ctx.fillRect(0, HEADER_H, W, H);
 
 	// savings + info bts
-	buff_ctx.fillStyle = buff_ctx.strokeStyle = '#000';
 	buff_ctx.lineWidth = FRIC_FONT_SIZE * .1;
 
 	for (var i = SAVINGS.length; i--;) {
@@ -109,10 +108,16 @@ function draw_savings_sc () {
 		var h = SAVINGS[i].box[1] + vertical_scroll*SAVINGS[i].box[3] + HEADER_H*1.025;
 		
 		if (h < H && h >= HEADER_H) { // test if on screen
+
+			buff_ctx.fillStyle = buff_ctx.strokeStyle = '#ffb';
+			buff_ctx.fillRect(SAVINGS[i].box[0], h, SAVINGS[i].box[2]*SAVINGS[i].nb_total/savings_value_max, SAVINGS[i].box[3]);
+			buff_ctx.fillStyle = buff_ctx.strokeStyle = '#000';
 			buff_ctx.font = (FRIC_FONT_SIZE*.6) + "px impact";
-			buff_ctx.fillText(SAVINGS[i].name + " x" + (SAVINGS[i].nb_total|0), SAVINGS[i].box[2]*.5, h+text_margin_h);
+			buff_ctx.fillText(SAVINGS[i].name, SAVINGS[i].box[2]*.5, h);
+			buff_ctx.font = (FRIC_FONT_SIZE*.45) + "px georgia";
+			buff_ctx.fillText(SAVINGS[i].cost+' €', SAVINGS[i].box[2]*.5, h+FRIC_FONT_SIZE*.25+text_margin_h*4.5);
 			buff_ctx.font = "italic " + (FRIC_FONT_SIZE*.5) + "px georgia";
-			buff_ctx.fillText(SAVINGS[i].description, SAVINGS[i].box[2]*.5, h+FRIC_FONT_SIZE*.5+text_margin_h*5);
+			buff_ctx.fillText(SAVINGS[i].description, SAVINGS[i].box[2]*.5, h+FRIC_FONT_SIZE*.5+text_margin_h*8);
 			buff_ctx.strokeRect(SAVINGS[i].box[0], h, W, SAVINGS[i].box[3]);
 			// info bts
 			buff_ctx.drawImage(info_bt_sprite, BT_INFO[0], h);
