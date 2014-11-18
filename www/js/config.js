@@ -304,6 +304,7 @@ function init_config () {
     fb_img = new Image();
     fb_img.src = 'img/fb-icon.png';
 
+    frame = 0;
 	fric = 0;
 	fric_per_second = 1;
     fric_per_click = 1;

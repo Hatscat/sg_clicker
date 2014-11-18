@@ -27,7 +27,7 @@ function draw_game_sc () {
 	//combo fx
 	if (click_multiplier) {
 		//buff_ctx.shadowColor = "#f33";
-		buff_ctx.shadowBlur = COIN_RADIUS_S * 50 * (Math.cos(time)+1)/2//*.004) / Math.sin(time*.002);
+		buff_ctx.shadowBlur = COIN_RADIUS_S * 50 * (Math.cos(time/1e3)+1)/2//*.004) / Math.sin(time*.002);
 		//console.log(buff_ctx.shadowBlur)
 		
 		buff_ctx.beginPath();
