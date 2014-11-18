@@ -41,8 +41,13 @@ function init_events(){
                 current_scene = SC_GAME;
             }
             for(var i=0;i< SAVINGS.length;i++){
-                var box = [SAVINGS[i].box[0],SAVINGS[i].box[1]+vertical_scroll*SAVINGS[i].box[3]+HEADER_H,SAVINGS[i].box[2],SAVINGS[i].box[3]];
-                if(isMouseHover(box) && fric >= SAVINGS[i].cost) {
+                var box = [SAVINGS[i].box[0],SAVINGS[i].box[1]+vertical_scroll*SAVINGS[i].box[3]+HEADER_H, SAVINGS[i].box[2], SAVINGS[i].box[3]];
+                var boxInfo = [BT_INFO[0], SAVINGS[i].box[1]+vertical_scroll*SAVINGS[i].box[3]+HEADER_H, BT_INFO[2], BT_INFO[3]];
+
+                if(isMouseHover(boxInfo)){
+                    window.open(SAVINGS[i].link,'_blank');
+                }
+                else if(isMouseHover(box) && fric >= SAVINGS[i].cost) {
                     fric -= SAVINGS[i].cost;
                     fric_per_second += SAVINGS[i].fric_per_second;
                     SAVINGS[i].nb_total++;
@@ -68,7 +73,6 @@ function init_events(){
 function isMouseHover (box) { 
 	return mouse.x >= box[0] && mouse.x <= box[0]+box[2] && mouse.y >= box[1] && mouse.y <= box[1]+box[3];
 }
-
 // params : [x, y, radius]
 // return true is mouse is on the circle
 function isMouseHover_circle (circle) {
