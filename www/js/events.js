@@ -22,7 +22,7 @@ function set_new_particles () {
 
         particles.push({
             font: size + "px georgia",
-            style: 'rgb('+color+','+color+',0)',
+            style: 'rgb('+color+','+color+','+(color*.33|0)+')',
             x: mouse.x,
             y: mouse.y,
             dir: Math.PI * 2 * i / particles_max_nb,

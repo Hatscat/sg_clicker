@@ -327,6 +327,7 @@ function init_config () {
 	vertical_scroll = 0;
     particles_max_nb = 16;
     particles = [];
+    fric_fx = [];
     shadows_max_nb = 32;
 	set_size();
 }
@@ -338,6 +339,7 @@ function set_size () {
 
 	min_length = W < H ?  W : H;
     gravity = -min_length *.0015;
+    fric_fx_speed_min = min_length *.001;
     particle_speed_min = min_length *.01;
     particles_min_size = min_length *.03;
     particles_max_size = min_length *.07;

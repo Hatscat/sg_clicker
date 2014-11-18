@@ -12,6 +12,7 @@ function loop (t) {
         fric += fric_per_second*(fric_refresh_time/1000);
         last_time_fric_update = time;
         can_refresh_header = true;
+        set_new_bg_fx();
     }
     if(time >=last_time_achievemnts_update+achievements_refresh_time){
         last_time_achievemnts_update = time;
@@ -32,4 +33,30 @@ function loop (t) {
     }
 	render();
 	requestAnimationFrame(loop);
+}
+
+function set_new_bg_fx () {
+
+    var count = fric_per_second<1e2 ? fric_per_second*.7 : fric_per_second<1e3 ? fric_per_second*.3 : 3e2;
+    
+    if (count > fric_fx.length) {
+
+        for (var i = count|0; i--;) {
+            
+            if (!fric_fx[i] || fric_fx[i].y>H) {
+
+                var size = particles_min_size + Math.random() * particles_max_size | 0;
+                var fade = size / particles_max_size;
+                var color = fade*50|0;
+
+                fric_fx[i] = {
+                    font: size + "px georgia",
+                    style: 'rgb('+color+','+color+','+color+')',
+                    x: Math.random()*W,
+                    y: 0,
+                    speed: fric_fx_speed_min + Math.random() * fric_fx_speed_min * 3,
+                };
+            }
+        }
+    }
 }

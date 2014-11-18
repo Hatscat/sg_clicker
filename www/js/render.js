@@ -25,6 +25,18 @@ function draw_game_sc () {
 	buff_ctx.fillRect(0, HEADER_H, W, H);
 	buff_ctx.globalAlpha = 1;
 
+	// fric fx
+	for (var i = fric_fx.length; i--;) {
+		if (fric_fx[i].y>H) {
+			fric_fx[i].y = 0;
+		} else {
+			//console.log(fric_fx[i].y)
+			buff_ctx.font = fric_fx[i].font;
+			buff_ctx.fillStyle = fric_fx[i].style;
+			buff_ctx.fillText('€', fric_fx[i].x, fric_fx[i].y+=fric_fx[i].speed);
+		}
+	}
+
 	//combo fx
 	if (click_multiplier) {
 
@@ -60,10 +72,14 @@ function draw_game_sc () {
 	buff_ctx.drawImage(bank_img, 0, 0, img_src_size, img_src_size, BT_BANK[0], BT_BANK[1], BT_BANK[2], BT_BANK[3]);
 
 	// combo text
-	if (click_multiplier && radius_id) {
+	if (click_multiplier) {
+		if (!radius_id) {
+			buff_ctx.globalAlpha = .5;
+		}
 		buff_ctx.font = "bold " + BT_SIZE + "px impact";
 		buff_ctx.fillStyle = '#e22';
 		buff_ctx.fillText('x'+CLICK_COMBO_LEVEL[click_multiplier].multiplier, W*.5, H*.5-BT_SIZE*.6);
+		buff_ctx.globalAlpha = 1;
 	}
 
 	// particles
