@@ -32,6 +32,7 @@ function init_config () {
             cost:150,
             fric_per_second:15,            
             total_fric_per_second:0,
+            nb_total:0,
             description:"le A c'est le B.A.-BA",
             link:"https://particuliers.societegenerale.fr/epargner/par_type_de_placements/livrets_epargne/livret_a.html"
         },
@@ -290,16 +291,14 @@ function init_config () {
     last_time_fric_update = 0;
     last_time_achievemnts_update = 0;
     time_combo = 500;
+    is_new_saving = false;
+    is_new_achievement = false;
 	current_scene = SC_GAME;
 	time = 0; //in ms
 	delta_time = 1;
 	old_timestamp = 0;
 	vertical_scroll = 0;
-	mouse = {
-		x: 0,
-		y: 0,
-		isDown: false
-	};
+    particles = [];
 	set_size();
 }
 
