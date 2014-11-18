@@ -138,7 +138,7 @@ function draw_achievements_sc () {
 		if (h < H && h >= HEADER_H) { // test if on screen
 			// stars
 			if (ACHIEVEMENTS[i].gotIt) {
-				buff_ctx.fillStyle = '#ff9';
+				buff_ctx.fillStyle = '#ff7';
 				buff_ctx.fillRect(ACHIEVEMENTS[i].box[0], h, W, ACHIEVEMENTS[i].box[3]);
 				buff_ctx.drawImage(achievement_star_sprites[1], BT_INFO[0], h);
 				buff_ctx.fillStyle = buff_ctx.strokeStyle;
@@ -184,7 +184,7 @@ function draw_savings_sc () {
 		
 		if (h < H && h >= HEADER_H) { // test if on screen
 
-			buff_ctx.fillStyle = buff_ctx.strokeStyle = '#ff9';
+			buff_ctx.fillStyle = buff_ctx.strokeStyle = '#ff7';
 			buff_ctx.fillRect(SAVINGS[i].box[0], h, SAVINGS[i].box[2]*SAVINGS[i].nb_total/savings_value_max, SAVINGS[i].box[3]);
 			buff_ctx.fillStyle = buff_ctx.strokeStyle = '#000';
 			buff_ctx.font = (FRIC_FONT_SIZE*.6) + "px impact";
@@ -213,23 +213,23 @@ function draw_fric () {
 	var fric_str = fric<1e3 ? (fric*100|0)/100 : fric|0;
 	var fric_arr = (fric_str+'').split('');
 
-	var j = fric_arr.length - 3;
-	if (j>3) {
-		fric_arr.splice(j);
-	}
-	for (var i = fric_arr.length; i > 0;) {
-		i-=3;
-
-		if (fric_arr[i]) {
-			fric_arr.splice(i, 0, ' ');
+	if (fric>1e3) {
+		var j = fric_arr.length - 3;
+		if (j>3) {
+			fric_arr.splice(j);
 		}
-	}
-	if (j>3) {
-		fric_arr.push('K');
-	}
+		for (var i = fric_arr.length; i > 0;) {
+			i-=3;
 
-
-	fric_str = fric_arr.join('');
+			if (fric_arr[i]) {
+				fric_arr.splice(i, 0, ' ');
+			}
+		}
+		if (j>3) {
+			fric_arr.push('K');
+		}
+		fric_str = fric_arr.join('');
+	}
 
 	buff_ctx.fillStyle = '#e82d24';
 	buff_ctx.fillRect(0, 0, W, HEADER_H);

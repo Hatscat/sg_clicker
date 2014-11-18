@@ -412,13 +412,13 @@ function create_coin_sprites () {
 		ctx.fill();
 
 		ctx.lineWidth = size * .08;
-		ctx.strokeStyle = '#c7a972';
+		ctx.strokeStyle = '#ca7'//'#c7a972';
 		ctx.stroke();
 
 		ctx.beginPath();
 		ctx.arc(COIN_CIRCLE[0], COIN_CIRCLE[1], radius1-ctx.lineWidth/2, 0, Math.PI*2);
 		ctx.lineWidth = size * .01;
-		ctx.strokeStyle = '#b95';
+		ctx.strokeStyle = '#a84'//'#a84';
 		ctx.stroke();
 
 		ctx.fillStyle = '#ddd';
@@ -427,7 +427,7 @@ function create_coin_sprites () {
 		ctx.fill();
 
 		ctx.lineWidth = size * .01;
-		ctx.strokeStyle = '#555';
+		ctx.strokeStyle = '#333';
 		ctx.stroke();
 
 		ctx.font = radius2*1.6 + "px georgia";
@@ -437,7 +437,7 @@ function create_coin_sprites () {
 		ctx.fillText('€', COIN_CIRCLE[0], COIN_CIRCLE[1]);
 
 		ctx.lineWidth = size * .01;
-		ctx.strokeStyle = '#555';
+		ctx.strokeStyle = '#333';
 		ctx.strokeText('€', COIN_CIRCLE[0], COIN_CIRCLE[1]);
 	}
 	return [c1, c2];
